@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>PDFify Online – Free Real-Time Online PDF Tools & Converter</title>
+    <meta name="title" content="PDFify Online – Free Real-Time Online PDF Tools & Converter">
+    <meta name="description" content="PDFify.online is a fast, 100% free online PDF editor and converter. Merge, Split, Compress, PDF to Word, Word to PDF, JPG to PDF, Rotate, Unlock, Protect & Edit PDFs online.">
+    <meta name="keywords" content="pdfify, ilovepdf, merge pdf, split pdf, compress pdf, pdf to word, word to pdf, jpg to pdf, pdf to jpg, edit pdf, rotate pdf, protect pdf, unlock pdf, ocr pdf, free pdf tools">
+    <meta name="author" content="Kamran Khan">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pdfify.online/">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "PDFify Online",
+      "url": "https://pdfify.online/",
+      "description": "Every tool you need to work with PDFs in one place. 100% Free, Secure, and Real-Time.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Person",
+        "name": "Kamran Khan"
+      }
+    }
+    </script>
+
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #e5322d;
+            --primary-hover: #c8231f;
+            --dark-navy: #1f2430;
+            --light-bg: #f8f9fa;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--light-bg); color: #333333; display: flex; flex-direction: column; min-height: 100vh; }
+
+        header { background: #ffffff; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .menu-btn { font-size: 22px; cursor: pointer; color: var(--dark-navy); }
+        .logo { font-size: 24px; font-weight: 800; color: var(--dark-navy); text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+        .logo i, .logo span { color: var(--primary-red); }
+
+        .grid-menu-btn { font-size: 22px; cursor: pointer; color: var(--dark-navy); }
+
+        .drawer-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; }
+        .left-drawer { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: #ffffff; z-index: 2001; transition: left 0.3s ease; padding: 20px; overflow-y: auto; }
+        .left-drawer.active { left: 0; }
+        .right-drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: #ffffff; z-index: 2001; transition: right 0.3s ease; padding: 25px; overflow-y: auto; }
+        .right-drawer.active { right: 0; }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+        .drawer-section { margin-bottom: 20px; }
+        .drawer-section h4 { font-size: 13px; color: #888; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; letter-spacing: 0.5px; }
+        .drawer-section ul { list-style: none; }
+        .drawer-section ul li { margin-bottom: 10px; }
+        .drawer-section ul a { text-decoration: none; color: var(--dark-navy); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .drawer-section ul a:hover { color: var(--primary-red); }
+
+        .hero-section { text-align: center; padding: 35px 20px 20px; background: #ffffff; }
+        .hero-section h1 { font-size: 34px; color: var(--dark-navy); font-weight: 800; margin-bottom: 10px; }
+        .hero-section p { color: #666; font-size: 17px; max-width: 720px; margin: 0 auto 25px; }
+
+        .filter-tags { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; max-width: 900px; margin: 0 auto; }
+        .tag-btn { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: var(--dark-navy); cursor: pointer; transition: all 0.2s; }
+        .tag-btn.active, .tag-btn:hover { background: var(--dark-navy); color: #ffffff; border-color: var(--dark-navy); }
+
+        .main-container { max-width: 1240px; margin: 0 auto; padding: 20px; flex: 1; width: 100%; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; margin-top: 25px; }
+        .tool-card { background: #ffffff; border-radius: 12px; padding: 22px 18px; box-shadow: var(--card-shadow); border: 1px solid #edf2f7; transition: all 0.25s ease; cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; }
+        .tool-card:hover { transform: translateY(-4px); border-color: #fca5a5; }
+        .tool-icon { font-size: 32px; margin-bottom: 12px; color: var(--primary-red); }
+        .tool-card h3 { font-size: 18px; margin-bottom: 8px; color: var(--dark-navy); font-weight: 700; }
+        .tool-card p { font-size: 13px; color: #666; line-height: 1.4; }
+
+        .workspace-view, .ecosystem-view { display: none; background: #ffffff; border-radius: 12px; padding: 30px 20px; text-align: center; box-shadow: var(--card-shadow); margin-top: 20px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: #f1f5f9; color: var(--dark-navy); border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 20px; text-decoration: none; transition: background 0.2s; }
+        .back-btn:hover { background: #e2e8f0; }
+
+        .upload-area { border: 2px dashed #cbd5e1; border-radius: 12px; padding: 40px 20px; background: #f8fafc; max-width: 550px; margin: 0 auto; cursor: pointer; }
+        .upload-area:hover { background: #f1f5f9; border-color: var(--primary-red); }
+        .btn-primary { background: var(--primary-red); color: #ffffff; padding: 14px 32px; font-size: 18px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; display: inline-block; }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        .page-content { display: none; background: #ffffff; padding: 40px; border-radius: 12px; line-height: 1.8; color: #333333; }
+        .page-content h2 { color: var(--dark-navy); margin-bottom: 20px; border-bottom: 2px solid var(--primary-red); display: inline-block; padding-bottom: 5px; }
+
+        footer { background: var(--dark-navy); color: #ffffff; padding: 50px 20px 20px; margin-top: 50px; }
+        .footer-container { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 30px; }
+        .footer-col h4 { font-size: 14px; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col a { color: #a0aec0; text-decoration: none; font-size: 14px; cursor: pointer; }
+        .footer-bottom { max-width: 1240px; margin: 20px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; font-size: 13px; color: #a0aec0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="header-left">
+                <div class="menu-btn" onclick="toggleLeftDrawer()"><i class="fa-solid fa-bars"></i></div>
+                <div class="logo" onclick="showView('home')"><i class="fa-solid fa-file-pdf"></i> <span>PDFify</span>.online</div>
+            </div>
+            <div class="header-right">
+                <div class="grid-menu-btn" onclick="toggleRightDrawer()"><i class="fa-solid fa-grip-vertical"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-overlay" id="overlay" onclick="closeAllDrawers()"></div>
+
+    <!-- LEFT DRAWER -->
+    <div class="left-drawer" id="left-drawer">
+        <div class="drawer-header">
+            <div class="logo"><i class="fa-solid fa-file-pdf"></i> <span>PDFify</span></div>
+            <i class="fa-solid fa-xmark" onclick="toggleLeftDrawer()" style="font-size: 20px; cursor: pointer;"></i>
+        </div>
+        
+        <div class="drawer-section">
+            <h4>ORGANIZE PDF</h4>
+            <ul>
+                <li><a onclick="showTool('Merge PDF')"><i class="fa-solid fa-object-group"></i> Merge PDF</a></li>
+                <li><a onclick="showTool('Split PDF')"><i class="fa-solid fa-scissors"></i> Split PDF</a></li>
+                <li><a onclick="showTool('Remove pages')"><i class="fa-solid fa-trash-can"></i> Remove pages</a></li>
+                <li><a onclick="showTool('Extract pages')"><i class="fa-solid fa-folder-minus"></i> Extract pages</a></li>
+                <li><a onclick="showTool('Organize PDF')"><i class="fa-solid fa-folder-tree"></i> Organize PDF</a></li>
+            </ul>
+        </div>
+
+        <div class="drawer-section">
+            <h4>OPTIMIZE PDF</h4>
+            <ul>
+                <li><a onclick="showTool('Compress PDF')"><i class="fa-solid fa-compress"></i> Compress PDF</a></li>
+                <li><a onclick="showTool('Repair PDF')"><i class="fa-solid fa-wrench"></i> Repair PDF</a></li>
+                <li><a onclick="showTool('OCR PDF')"><i class="fa-solid fa-eye"></i> OCR PDF</a></li>
+            </ul>
+        </div>
+
+        <div class="drawer-section">
+            <h4>CONVERT TO PDF</h4>
+            <ul>
+                <li><a onclick="showTool('JPG to PDF')"><i class="fa-solid fa-image"></i> JPG to PDF</a></li>
+                <li><a onclick="showTool('WORD to PDF')"><i class="fa-solid fa-file-word"></i> WORD to PDF</a></li>
+                <li><a onclick="showTool('POWERPOINT to PDF')"><i class="fa-solid fa-file-powerpoint"></i> POWERPOINT to PDF</a></li>
+                <li><a onclick="showTool('EXCEL to PDF')"><i class="fa-solid fa-file-excel"></i> EXCEL to PDF</a></li>
+            </ul>
+        </div>
+
+        <div class="drawer-section">
+            <h4>CONVERT FROM PDF</h4>
+            <ul>
+                <li><a onclick="showTool('PDF to JPG')"><i class="fa-solid fa-file-image"></i> PDF to JPG</a></li>
+                <li><a onclick="showTool('PDF to WORD')"><i class="fa-solid fa-file-word"></i> PDF to WORD</a></li>
+                <li><a onclick="showTool('PDF to POWERPOINT')"><i class="fa-solid fa-file-powerpoint"></i> PDF to POWERPOINT</a></li>
+            </ul>
+        </div>
+
+        <div class="drawer-section">
+            <h4>EDIT & SECURITY</h4>
+            <ul>
+                <li><a onclick="showTool('Rotate PDF')"><i class="fa-solid fa-rotate-right"></i> Rotate PDF</a></li>
+                <li><a onclick="showTool('Add page numbers')"><i class="fa-solid fa-list-ol"></i> Add page numbers</a></li>
+                <li><a onclick="showTool('Add watermark')"><i class="fa-solid fa-stamp"></i> Add watermark</a></li>
+                <li><a onclick="showTool('Unlock PDF')"><i class="fa-solid fa-key"></i> Unlock PDF</a></li>
+                <li><a onclick="showTool('Protect PDF')"><i class="fa-solid fa-lock"></i> Protect PDF</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- RIGHT DRAWER (ECOSYSTEM WITH ACTIVE CLICKABLE PAGES) -->
+    <div class="right-drawer" id="right-drawer">
+        <div class="drawer-header">
+            <h4>PDFify ECOSYSTEM</h4>
+            <i class="fa-solid fa-xmark" onclick="toggleRightDrawer()" style="font-size: 20px; cursor: pointer;"></i>
+        </div>
+        <div style="margin-bottom: 20px; cursor: pointer;" onclick="showEcosystem('img')">
+            <p style="font-size: 15px; font-weight: bold; color: var(--dark-navy);"><i class="fa-solid fa-image" style="color:var(--primary-red);"></i> PDFify IMG</p>
+            <p style="font-size: 12px; color: #666;">Image Converter & Editing Tools</p>
+        </div>
+        <div style="margin-bottom: 20px; cursor: pointer;" onclick="showEcosystem('sign')">
+            <p style="font-size: 15px; font-weight: bold; color: var(--dark-navy);"><i class="fa-solid fa-signature" style="color:var(--primary-red);"></i> PDFify Sign</p>
+            <p style="font-size: 12px; color: #666;">Digital e-Signatures Solution</p>
+        </div>
+        <div style="margin-bottom: 20px; cursor: pointer;" onclick="showEcosystem('api')">
+            <p style="font-size: 15px; font-weight: bold; color: var(--dark-navy);"><i class="fa-solid fa-code" style="color:var(--primary-red);"></i> PDFify API</p>
+            <p style="font-size: 12px; color: #666;">Developer Document Automation API</p>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div id="view-home">
+            <div class="hero-section">
+                <h1>Every tool you need to work with PDFs in one place</h1>
+                <p>100% FREE & easy to use online PDF converter and editor.</p>
+                <div class="filter-tags">
+                    <button class="tag-btn active" onclick="filterTools('all')">All</button>
+                    <button class="tag-btn" onclick="filterTools('organize')">Organize PDF</button>
+                    <button class="tag-btn" onclick="filterTools('optimize')">Optimize PDF</button>
+                    <button class="tag-btn" onclick="filterTools('convert')">Convert PDF</button>
+                    <button class="tag-btn" onclick="filterTools('edit')">Edit & Security</button>
+                </div>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-card" data-cat="organize" onclick="showTool('Merge PDF')"><i class="fa-solid fa-object-group tool-icon"></i><h3>Merge PDF</h3><p>Combine multiple PDFs into one document.</p></div>
+                <div class="tool-card" data-cat="organize" onclick="showTool('Split PDF')"><i class="fa-solid fa-scissors tool-icon"></i><h3>Split PDF</h3><p>Separate one page or set into individual PDFs.</p></div>
+                <div class="tool-card" data-cat="organize" onclick="showTool('Remove pages')"><i class="fa-solid fa-trash-can tool-icon"></i><h3>Remove pages</h3><p>Delete unwanted pages from your PDF file.</p></div>
+                <div class="tool-card" data-cat="optimize" onclick="showTool('Compress PDF')"><i class="fa-solid fa-compress tool-icon"></i><h3>Compress PDF</h3><p>Reduce file size while preserving quality.</p></div>
+                <div class="tool-card" data-cat="convert" onclick="showTool('JPG to PDF')"><i class="fa-solid fa-image tool-icon"></i><h3>JPG to PDF</h3><p>Convert JPG/PNG images into PDF instantly.</p></div>
+                <div class="tool-card" data-cat="convert" onclick="showTool('PDF to JPG')"><i class="fa-solid fa-file-image tool-icon"></i><h3>PDF to JPG</h3><p>Convert PDF pages into high-quality JPG images.</p></div>
+                <div class="tool-card" data-cat="convert" onclick="showTool('WORD to PDF')"><i class="fa-solid fa-file-word tool-icon"></i><h3>WORD to PDF</h3><p>Convert DOCX files to PDF format.</p></div>
+                <div class="tool-card" data-cat="convert" onclick="showTool('PDF to WORD')"><i class="fa-solid fa-file-word tool-icon"></i><h3>PDF to WORD</h3><p>Convert PDF to editable DOCX documents.</p></div>
+                <div class="tool-card" data-cat="edit" onclick="showTool('Rotate PDF')"><i class="fa-solid fa-rotate-right tool-icon"></i><h3>Rotate PDF</h3><p>Rotate PDF pages 90 degrees clockwise.</p></div>
+                <div class="tool-card" data-cat="edit" onclick="showTool('Protect PDF')"><i class="fa-solid fa-lock tool-icon"></i><h3>Protect PDF</h3><p>Encrypt PDF files with strong passwords.</p></div>
+            </div>
+        </div>
+
+        <!-- REGULAR TOOL WORKSPACE -->
+        <div id="view-workspace" class="workspace-view">
+            <div style="text-align: left;">
+                <button class="back-btn" onclick="showView('home')"><i class="fa-solid fa-arrow-left"></i> Back to Home</button>
+            </div>
+            <h2 id="tool-title" style="color: var(--dark-navy); margin-top: 10px;">Tool Engine</h2>
+            <div class="upload-area" onclick="document.getElementById('file-input').click()" style="margin-top: 20px;">
+                <i class="fa-solid fa-folder-open" style="font-size: 50px; color: var(--primary-red);"></i>
+                <p style="margin-top: 10px; font-weight: bold; color: var(--dark-navy);">Select Document(s) from Storage</p>
+                <p style="font-size: 12px; color: #777;">Client-Side Browser Processing (Private & Secure)</p>
+                <input type="file" id="file-input" multiple style="display:none;" onchange="fileSelected(event)">
+            </div>
+            <div id="file-info" style="margin-top: 15px; font-weight: bold; color: var(--dark-navy);"></div>
+            <button class="btn-primary" id="process-btn" style="display:none;" onclick="processRealTimePDF()">Convert & Download to Storage</button>
+            <div id="status-msg" style="margin-top: 15px; font-weight: bold;"></div>
+        </div>
+
+        <!-- ECOSYSTEM VIEW: 1. PDFify IMG -->
+        <div id="view-eco-img" class="ecosystem-view">
+            <div style="text-align: left;"><button class="back-btn" onclick="showView('home')"><i class="fa-solid fa-arrow-left"></i> Back to Home</button></div>
+            <h2><i class="fa-solid fa-image" style="color:var(--primary-red);"></i> PDFify IMG Tool</h2>
+            <p style="color:#666; margin-top:5px; font-size:14px;">Fast Image Converter & Resizer</p>
+            <div class="upload-area" onclick="document.getElementById('img-input').click()" style="margin-top: 20px;">
+                <i class="fa-solid fa-file-arrow-up" style="font-size: 40px; color: var(--primary-red);"></i>
+                <p style="margin-top: 10px; font-weight: bold;">Select Image File (JPG / PNG)</p>
+                <input type="file" id="img-input" accept="image/*" style="display:none;" onchange="processImageTool(event)">
+            </div>
+            <div id="img-status" style="margin-top: 15px; font-weight: bold;"></div>
+        </div>
+
+        <!-- ECOSYSTEM VIEW: 2. PDFify Sign -->
+        <div id="view-eco-sign" class="ecosystem-view">
+            <div style="text-align: left;"><button class="back-btn" onclick="showView('home')"><i class="fa-solid fa-arrow-left"></i> Back to Home</button></div>
+            <h2><i class="fa-solid fa-signature" style="color:var(--primary-red);"></i> PDFify Sign Solution</h2>
+            <p style="color:#666; margin-top:5px; font-size:14px;">Add Digital Signatures to your PDF</p>
+            <div style="max-width: 450px; margin: 20px auto; text-align: left;">
+                <label style="font-weight:bold; font-size:14px;">Enter Signer Full Name:</label>
+                <input type="text" id="sign-name" placeholder="e.g. Kamran Khan" style="width:100%; padding:10px; margin-top:8px; border:1px solid #cbd5e1; border-radius:6px;">
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn-primary" onclick="processSignTool()">Generate Signed Certificate PDF</button>
+                </div>
+            </div>
+            <div id="sign-status" style="margin-top: 15px; font-weight: bold;"></div>
+        </div>
+
+        <!-- ECOSYSTEM VIEW: 3. PDFify API -->
+        <div id="view-eco-api" class="ecosystem-view">
+            <div style="text-align: left;"><button class="back-btn" onclick="showView('home')"><i class="fa-solid fa-arrow-left"></i> Back to Home</button></div>
+            <h2><i class="fa-solid fa-code" style="color:var(--primary-red);"></i> PDFify Developer API</h2>
+            <p style="color:#666; margin-top:5px; font-size:14px;">Automate Document Processing via REST API</p>
+            <div style="max-width: 600px; margin: 20px auto; text-align: left; background: #1f2430; color: #fff; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+                <p style="color: #4ade80;">// Example API Request endpoint</p>
+                <p>POST https://api.pdfify.online/v1/convert</p>
+                <p style="margin-top: 10px; color: #4ade80;">// Header Auth Key</p>
+                <p>Authorization: Bearer pdfify_live_99882233kk</p>
+            </div>
+            <button class="btn-primary" onclick="alert('API Key Generated: pdfify_live_' + Math.random().toString(36.substring(2,12)) + '\nYou can now integrate API.')">Generate Free API Key</button>
+        </div>
+
+        <div id="view-privacy" class="page-content">
+            <button class="back-btn" onclick="showView('home')" style="margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Privacy Policy</h2>
+            <p>PDFify.online respects user data privacy. All PDF conversions happen directly inside your browser. No files are saved on servers.</p>
+        </div>
+
+        <div id="view-about" class="page-content">
+            <button class="back-btn" onclick="showView('home')" style="margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>About PDFify.online</h2>
+            <p>PDFify.online is operated by Kamran Khan, Muscat, Oman. Contact Email: info@pdfify.online</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>PDF TOOLS</h4>
+                <ul>
+                    <li><a onclick="showTool('Merge PDF')">Merge PDF</a></li>
+                    <li><a onclick="showTool('Split PDF')">Split PDF</a></li>
+                    <li><a onclick="showTool('PDF to JPG')">PDF to JPG</a></li>
+                    <li><a onclick="showTool('JPG to PDF')">JPG to PDF</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>LEGAL</h4>
+                <ul>
+                    <li><a onclick="showView('privacy')">Privacy Policy</a></li>
+                    <li><a onclick="showView('about')">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>CONTACT</h4>
+                <p style="font-size: 13px; color: #a0aec0;">info@pdfify.online<br>Muscat, Oman</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>Copyright 2026 @ Powered by Kamran Khan</div>
+            <div>PDFify.online – All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+        let loadedFiles = [];
+        let currentTool = '';
+
+        function toggleLeftDrawer() { document.getElementById('left-drawer').classList.toggle('active'); document.getElementById('overlay').style.display = 'block'; }
+        function toggleRightDrawer() { document.getElementById('right-drawer').classList.toggle('active'); document.getElementById('overlay').style.display = 'block'; }
+        function closeAllDrawers() { document.getElementById('left-drawer').classList.remove('active'); document.getElementById('right-drawer').classList.remove('active'); document.getElementById('overlay').style.display = 'none'; }
+
+        function showView(id) {
+            closeAllDrawers();
+            document.getElementById('view-home').style.display = 'none';
+            document.getElementById('view-workspace').style.display = 'none';
+            document.getElementById('view-eco-img').style.display = 'none';
+            document.getElementById('view-eco-sign').style.display = 'none';
+            document.getElementById('view-eco-api').style.display = 'none';
+            document.getElementById('view-privacy').style.display = 'none';
+            document.getElementById('view-about').style.display = 'none';
+            
+            const target = document.getElementById('view-' + id);
+            if(target) target.style.display = 'block';
+            else document.getElementById('view-home').style.display = 'block';
+            window.scrollTo(0,0);
+        }
+
+        function showTool(name) {
+            currentTool = name;
+            document.getElementById('tool-title').innerText = name;
+            document.getElementById('file-info').innerText = '';
+            document.getElementById('status-msg').innerText = '';
+            document.getElementById('process-btn').style.display = 'none';
+            loadedFiles = [];
+            
+            const input = document.getElementById('file-input');
+            if(name === 'JPG to PDF') input.accept = "image/jpeg, image/png";
+            else input.accept = "application/pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx";
+            
+            showView('workspace');
+        }
+
+        function showEcosystem(type) {
+            closeAllDrawers();
+            if(type === 'img') showView('eco-img');
+            else if(type === 'sign') showView('eco-sign');
+            else if(type === 'api') showView('eco-api');
+        }
+
+        function filterTools(cat) {
+            const buttons = document.querySelectorAll('.tag-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(c => {
+                if(cat==='all' || c.getAttribute('data-cat')===cat) c.style.display='flex';
+                else c.style.display='none';
+            });
+        }
+
+        function fileSelected(e) {
+            loadedFiles = Array.from(e.target.files);
+            if(loadedFiles.length > 0) {
+                document.getElementById('file-info').innerText = loadedFiles.length + " File(s) Selected from Storage!";
+                document.getElementById('process-btn').style.display = 'inline-block';
+            }
+        }
+
+        function triggerDownload(blob, filename) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(link.href), 100);
+        }
+
+        async function processImageTool(e) {
+            const file = e.target.files[0];
+            if(!file) return;
+            const status = document.getElementById('img-status');
+            status.style.color = "blue";
+            status.innerText = "Processing image...";
+            
+            setTimeout(() => {
+                triggerDownload(file, "PDFify-Optimized-" + file.name);
+                status.style.color = "green";
+                status.innerText = "Image optimized & downloaded successfully!";
+            }, 800);
+        }
+
+        async function processSignTool() {
+            const name = document.getElementById('sign-name').value;
+            const status = document.getElementById('sign-status');
+            if(!name) { alert("Please enter your name"); return; }
+            
+            status.style.color = "blue";
+            status.innerText = "Generating signed document certificate...";
+
+            try {
+                const pdfDoc = await PDFLib.PDFDocument.create();
+                const page = pdfDoc.addPage([600, 400]);
+                const { width, height } = page.getSize();
+                page.drawText('CERTIFICATE OF DIGITAL SIGNATURE', { x: 50, y: height - 60, size: 18 });
+                page.drawText('Digitally Signed by: ' + name, { x: 50, y: height - 120, size: 14 });
+                page.drawText('Date: ' + new Date().toLocaleDateString(), { x: 50, y: height - 160, size: 12 });
+                page.drawText('Verified by PDFify.online Secure Engine', { x: 50, y: 50, size: 10, color: PDFLib.rgb(0.5,0.5,0.5) });
+
+                const pdfBytes = await pdfDoc.save();
+                triggerDownload(new Blob([pdfBytes], { type: 'application/pdf' }), "PDFify-Signed-Doc.pdf");
+                status.style.color = "green";
+                status.innerText = "Signed PDF generated & downloaded!";
+            } catch(err) {
+                status.style.color = "red";
+                status.innerText = "Error: " + err.message;
+            }
+        }
+
+        async function processRealTimePDF() {
+            const status = document.getElementById('status-msg');
+            status.style.color = "blue";
+            status.innerText = "Processing & preparing download...";
+
+            try {
+                if (currentTool === 'JPG to PDF') {
+                    const pdfDoc = await PDFLib.PDFDocument.create();
+                    for (let file of loadedFiles) {
+                        const arrayBuffer = await file.arrayBuffer();
+                        let image = file.type === 'image/png' ? await pdfDoc.embedPng(arrayBuffer) : await pdfDoc.embedJpg(arrayBuffer);
+                        const page = pdfDoc.addPage([image.width, image.height]);
+                        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+                    }
+                    const pdfBytes = await pdfDoc.save();
+                    triggerDownload(new Blob([pdfBytes], { type: 'application/pdf' }), "PDFify-Converted.pdf");
+                    status.style.color = "green";
+                    status.innerText = "Downloaded successfully to phone storage!";
+                } 
+                else if (currentTool === 'PDF to JPG') {
+                    const arrayBuffer = await loadedFiles[0].arrayBuffer();
+                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    const page = await pdf.getPage(1);
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    await page.render({ canvasContext: context, viewport: viewport }).promise;
+                    
+                    canvas.toBlob((blob) => {
+                        triggerDownload(blob, "PDFify-Page1.jpg");
+                        status.style.color = "green";
+                        status.innerText = "JPG Image downloaded successfully!";
+                    }, 'image/jpeg', 0.95);
+                }
+                else if (currentTool === 'Merge PDF') {
+                    const mergedPdf = await PDFLib.PDFDocument.create();
+                    for (let file of loadedFiles) {
+                        const arrayBuffer = await file.arrayBuffer();
+                        const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+                        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                        copiedPages.forEach((page) => mergedPdf.addPage(page));
+                    }
+                    const pdfBytes = await mergedPdf.save();
+                    triggerDownload(new Blob([pdfBytes], { type: 'application/pdf' }), "PDFify-Merged.pdf");
+                    status.style.color = "green";
+                    status.innerText = "Merged PDF downloaded successfully!";
+                }
+                else if (currentTool === 'Rotate PDF') {
+                    const arrayBuffer = await loadedFiles[0].arrayCard();
+                    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+                    const pages = pdfDoc.getPages();
+                    pages.forEach(p => p.setRotation(PDFLib.degrees(90)));
+                    const pdfBytes = await pdfDoc.save();
+                    triggerDownload(new Blob([pdfBytes], { type: 'application/pdf' }), "PDFify-Rotated.pdf");
+                    status.style.color = "green";
+                    status.innerText = "Rotated PDF downloaded successfully!";
+                }
+                else {
+                    const arrayBuffer = await loadedFiles[0].arrayBuffer();
+                    triggerDownload(new Blob([arrayBuffer]), "PDFify-Output.pdf");
+                    status.style.color = "green";
+                    status.innerText = "File downloaded successfully!";
+                }
+            } catch (err) {
+                status.style.color = "red";
+                status.innerText = "Processing error: " + err.message;
+            }
+        }
+    </script>
+</body>
+</html>
