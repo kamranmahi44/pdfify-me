@@ -1,0 +1,25 @@
+PDFify Online — Invoice Payment Links
+====================================
+
+WHAT A GUEST CAN DO
+- Open Invoice Generator without signing up.
+- Paste their own PayPal, Wise, and/or Payoneer HTTPS payment link.
+- Generate a PDF invoice with clickable “Pay with …” links.
+
+WHAT A VERIFIED ACCOUNT ADDS
+- Save the user’s own links privately in their Firebase account.
+- Load those links for later invoices and other devices after signing in.
+- The Firestore rules limit the payment settings document to the matching verified account UID.
+
+IMPORTANT LIMITATIONS
+- PDFify does not receive, process, or store customer card/bank details.
+- The button opens the payment provider’s own checkout/payment request page. The customer may still need to choose a method, sign in, and confirm the payment.
+- PDFify does not automatically verify payment, mark an invoice as paid, or create amount-specific provider links. For each invoice, use a provider link whose amount and currency match that invoice where supported.
+- Provider eligibility, countries, fees, and payment methods vary by provider/account.
+- Saving/loading account links requires a configured Firebase project, Email/Password authentication, email verification, Firestore, and the updated firestore.rules published to that project. The package’s placeholder firebase-config.js is not live configuration.
+
+PUBLISH STEPS
+1. Upload the package contents to the GitHub Pages repository root; preserve the repository’s existing CNAME file for a custom domain.
+2. Configure Firebase using FIREBASE-SETUP.md and replace the placeholder values in firebase-config.js.
+3. Publish the updated firestore.rules in the Firebase Console.
+4. Test with a verified test account and harmless test payment links before public use.
