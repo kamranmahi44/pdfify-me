@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="last-modified" content="2026-11-09">
+    
+    <title>Text to Document – PDFify Online Free PDF Tools</title>
+    <meta name="description" content="Type text notes and download instantly in multiple formats securely on PDFify.online.">
+    <meta name="author" content="Muhammad Kamran">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pdfify.online/text-to-document/">
+    
+    <!-- Google Search Console Verification Meta Tag -->
+    <meta name="google-site-verification" content="f7a075e9edc2152b">
+     
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C3QDB80S0X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C3QDB80S0X');
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        :root {
+            --primary-red: #e5322d;
+            --primary-hover: #c8231f;
+            --dark-navy: #1f2430;
+            --light-bg: #f8f9fa;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--light-bg); color: #333333; display: flex; flex-direction: column; min-height: 100vh; }
+
+        header { background: #ffffff; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .logo { font-size: 20px; font-weight: 800; color: var(--dark-navy); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .logo i, .logo span { color: var(--primary-red); }
+
+        .main-container { max-width: 900px; margin: 30px auto; padding: 25px; flex: 1; width: 100%; background: #ffffff; border-radius: 8px; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); text-align: center; }
+        .back-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--dark-navy); color: #ffffff; padding: 8px 16px; border-radius: 14px; font-size: 13px; font-weight: 700; text-decoration: none; margin-bottom: 20px; transition: background 0.2s; }
+        .back-btn:hover { background: var(--primary-red); }
+
+        .tool-header-icon { font-size: 40px; color: var(--primary-red); margin-bottom: 12px; }
+        h1 { font-size: 22px; color: var(--dark-navy); margin-bottom: 10px; font-weight: 800; }
+        p.desc { color: #666; font-size: 13px; max-width: 600px; margin: 0 auto 25px; line-height: 1.5; }
+
+        .editor-box { width: 100%; max-width: 700px; margin: 0 auto 20px; text-align: left; }
+        .editor-box label { font-size: 13px; font-weight: 700; color: var(--dark-navy); display: block; margin-bottom: 6px; }
+        textarea { width: 100%; height: 180px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; resize: vertical; outline: none; transition: border-color 0.2s; }
+        textarea:focus { border-color: var(--primary-red); }
+
+        .button-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 15px; }
+        .btn-action { background: var(--primary-red); color: #ffffff; padding: 10px 20px; font-size: 13px; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+        .btn-action:hover { background: var(--primary-hover); }
+        .btn-secondary { background: var(--dark-navy); }
+        .btn-secondary:hover { background: var(--primary-red); }
+
+        #statusMsg { margin-top: 15px; font-weight: bold; font-size: 13px; }
+
+        footer { background: var(--dark-navy); color: #ffffff; padding: 25px 15px; margin-top: 40px; }
+        .footer-container { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; text-align: left; }
+        .footer-col h4 { font-size: 12px; margin-bottom: 10px; text-transform: uppercase; font-weight: 700; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 6px; }
+        .footer-col a, .footer-col p { color: #a0aec0; text-decoration: none; font-size: 12px; line-height: 1.5; }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom { max-width: 1240px; margin: 15px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 11px; color: #a0aec0; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="header-left">
+                <a href="/" class="logo"><i class="fa-solid fa-file-pdf"></i> <span>PDFify Online</span></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <a href="/" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        
+        <div class="tool-header-icon"><i class="fa-solid fa-file-lines"></i></div>
+        <h1>Text to Document</h1>
+        <p class="desc">Type text notes and download instantly in PDF, Word, PNG, or JPG format securely in your browser.</p>
+
+        <div class="editor-box">
+            <label for="textContent">Enter or Paste Your Text:</label>
+            <textarea id="textContent" placeholder="Type your notes here..."></textarea>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-action" onclick="downloadFile('pdf')"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+            <button class="btn-action btn-secondary" onclick="downloadFile('word')"><i class="fa-solid fa-file-word"></i> Download Word</button>
+            <button class="btn-action" onclick="downloadFile('png')"><i class="fa-solid fa-image"></i> Download PNG</button>
+            <button class="btn-action btn-secondary" onclick="downloadFile('jpg')"><i class="fa-solid fa-file-image"></i> Download JPG</button>
+        </div>
+
+        <div id="statusMsg"></div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>PDFify</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="https://pdfify.online/">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <ul>
+                    <li><a href="https://fb.pdfify.online" target="_blank"><i class="fa-brands fa-facebook" style="color: #1877f2;"></i> Facebook Page</a></li>
+                    <li><a href="https://insta.pdfify.online" target="_blank"><i class="fa-brands fa-instagram" style="color: #e4405f;"></i> Instagram</a></li>
+                    <li><a href="https://www.youtube.com/@pdfify.online" target="_blank"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> YouTube Channel</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Al Amarat Al Mahaj 119, Muscat, Oman</p>
+                <p style="margin-top: 6px;"><i class="fa-solid fa-envelope"></i> homemantinace.om@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PDFify.online - All Rights Reserved.</p>
+            <p>Powered by PDFify Engine</p>
+        </div>
+    </footer>
+
+    <script>
+        function downloadFile(type) {
+            const text = document.getElementById('textContent').value;
+            const status = document.getElementById('statusMsg');
+            
+            if (!text.trim()) {
+                status.style.color = 'red';
+                status.innerText = 'Please enter some text first.';
+                return;
+            }
+
+            status.style.color = 'blue';
+            status.innerText = 'Generating ' + type.toUpperCase() + ' file...';
+
+            try {
+                if (type === 'pdf') {
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
+                    const splitText = doc.splitTextToSize(text, 180);
+                    doc.text(splitText, 15, 20);
+                    doc.save('pdfify-document.pdf');
+                    status.style.color = 'green';
+                    status.innerText = 'PDF downloaded successfully!';
+                } 
+                else if (type === 'word') {
+                    const blob = new Blob(['\ufeff' + text], { type: 'application/msword' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'pdfify-document.doc';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    status.style.color = 'green';
+                    status.innerText = 'Word document downloaded successfully!';
+                } 
+                else if (type === 'png' || type === 'jpg') {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 800;
+                    canvas.height = 600;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#333333';
+                    ctx.font = '18px sans-serif';
+                    
+                    let lines = text.split('\n');
+                    let y = 40;
+                    for(let i=0; i<lines.length && y < 550; i++) {
+                        ctx.fillText(lines[i], 30, y);
+                        y += 25;
+                    }
+
+                    const mime = type === 'png' ? 'image/png' : 'image/jpeg';
+                    const ext = type === 'png' ? 'png' : 'jpg';
+                    const url = canvas.toDataURL(mime);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'pdfify-image.' + ext;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    status.style.color = 'green';
+                    status.innerText = type.toUpperCase() + ' image downloaded successfully!';
+                }
+            } catch (err) {
+                status.style.color = 'red';
+                status.innerText = 'Error: ' + err.message;
+            }
+        }
+    </script>
+</body>
+  </html>
+  
