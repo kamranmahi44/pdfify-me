@@ -5,8 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="last-modified" content="2026-11-09">
     
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Text to Document – PDFify Online">
+    <meta property="og:description" content="Type text notes and download instantly in PDF, Word, PNG, or JPG format securely on PDFify.online.">
+    <meta property="og:url" content="https://pdfify.online/text-to-document/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://pdfify.online/preview-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Text to Document – PDFify Online">
+    <meta name="twitter:description" content="Type text notes and download instantly in PDF, Word, PNG, or JPG format securely on PDFify.online.">
+    <meta name="twitter:image" content="https://pdfify.online/preview-image.jpg">
+       
     <title>Text to Document – PDFify Online Free PDF Tools</title>
-    <meta name="description" content="Type text notes and download instantly in multiple formats securely on PDFify.online.">
+    <meta name="title" content="Text to Document – PDFify Online Free PDF Tools">
+    <meta name="description" content="Type text notes and download instantly in PDF, Word, PNG, or JPG format securely on PDFify.online.">
     <meta name="author" content="Muhammad Kamran">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://pdfify.online/text-to-document/">
@@ -14,6 +30,9 @@
     <!-- Google Search Console Verification Meta Tag -->
     <meta name="google-site-verification" content="f7a075e9edc2152b">
      
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js" defer></script>
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C3QDB80S0X"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -21,9 +40,9 @@
       gtag('js', new Date());
       gtag('config', 'G-C3QDB80S0X');
     </script>
-
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
         :root {
@@ -41,12 +60,12 @@
         header { background: #ffffff; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
         .nav-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; }
         .header-left { display: flex; align-items: center; gap: 12px; }
-        .logo { font-size: 20px; font-weight: 800; color: var(--dark-navy); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .logo { font-size: 20px; font-weight: 800; color: var(--dark-navy); text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 5px; }
         .logo i, .logo span { color: var(--primary-red); }
 
         .main-container { max-width: 900px; margin: 30px auto; padding: 25px; flex: 1; width: 100%; background: #ffffff; border-radius: 8px; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); text-align: center; }
-        .back-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--dark-navy); color: #ffffff; padding: 8px 16px; border-radius: 14px; font-size: 13px; font-weight: 700; text-decoration: none; margin-bottom: 20px; transition: background 0.2s; }
-        .back-btn:hover { background: var(--primary-red); }
+        .back-btn { display: inline-flex; align-items: center; gap: 6px; background: #1f2430; color: #ffffff; border: 1px solid #1f2430; padding: 8px 16px; border-radius: 14px; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; transition: background 0.2s; margin-bottom: 20px; }
+        .back-btn:hover { background: var(--primary-red); border-color: var(--primary-red); }
 
         .tool-header-icon { font-size: 40px; color: var(--primary-red); margin-bottom: 12px; }
         h1 { font-size: 22px; color: var(--dark-navy); margin-bottom: 10px; font-weight: 800; }
@@ -89,21 +108,21 @@
         
         <div class="tool-header-icon"><i class="fa-solid fa-file-lines"></i></div>
         <h1>Text to Document</h1>
-        <p class="desc">Type text notes and download instantly in PDF, Word, PNG, or JPG format securely in your browser.</p>
+        <p class="desc">Type or paste your text below and download instantly as a PDF, Word, PNG, or JPG file[span_5](start_span)[span_5](end_span).</p>
 
         <div class="editor-box">
-            <label for="textContent">Enter or Paste Your Text:</label>
-            <textarea id="textContent" placeholder="Type your notes here..."></textarea>
+            <label for="user-custom-text">Enter or Paste Your Text:</label>
+            <textarea id="user-custom-text" placeholder="Yahan apna text ya message type karein..."></textarea>
         </div>
 
         <div class="button-group">
-            <button class="btn-action" onclick="downloadFile('pdf')"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
-            <button class="btn-action btn-secondary" onclick="downloadFile('word')"><i class="fa-solid fa-file-word"></i> Download Word</button>
-            <button class="btn-action" onclick="downloadFile('png')"><i class="fa-solid fa-image"></i> Download PNG</button>
-            <button class="btn-action btn-secondary" onclick="downloadFile('jpg')"><i class="fa-solid fa-file-image"></i> Download JPG</button>
+            <button class="btn-action" onclick="downloadRealPDF()"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+            <button class="btn-action btn-secondary" onclick="downloadRealWord()"><i class="fa-solid fa-file-word"></i> Download Word</button>
+            <button class="btn-action" onclick="downloadRealImage('png')"><i class="fa-solid fa-image"></i> Download PNG</button>
+            <button class="btn-action btn-secondary" onclick="downloadRealImage('jpg')"><i class="fa-solid fa-file-image"></i> Download JPG</button>
         </div>
 
-        <div id="statusMsg"></div>
+        <div id="text-status-msg"></div>
     </div>
 
     <footer>
@@ -136,75 +155,65 @@
     </footer>
 
     <script>
-        function downloadFile(type) {
-            const text = document.getElementById('textContent').value;
-            const status = document.getElementById('statusMsg');
-            
-            if (!text.trim()) {
-                status.style.color = 'red';
-                status.innerText = 'Please enter some text first.';
-                return;
-            }
+        function triggerDownload(blob, filename) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(link.href), 100);
+        }
 
-            status.style.color = 'blue';
-            status.innerText = 'Generating ' + type.toUpperCase() + ' file...';
-
+        // Real PDF Generation using pdf-lib
+        async function downloadRealPDF() {
+            const textVal = document.getElementById('user-custom-text').value.trim();
+            const msgBox = document.getElementById('text-status-msg');
+            if (!textVal) { msgBox.style.color = 'red'; msgBox.innerText = 'Pehle kuch text ya message toh likhein!'; return; }
+            msgBox.style.color = 'blue'; msgBox.innerText = 'Generating valid PDF document...';
             try {
-                if (type === 'pdf') {
-                    const { jsPDF } = window.jspdf;
-                    const doc = new jsPDF();
-                    const splitText = doc.splitTextToSize(text, 180);
-                    doc.text(splitText, 15, 20);
-                    doc.save('pdfify-document.pdf');
-                    status.style.color = 'green';
-                    status.innerText = 'PDF downloaded successfully!';
-                } 
-                else if (type === 'word') {
-                    const blob = new Blob(['\ufeff' + text], { type: 'application/msword' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'pdfify-document.doc';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    status.style.color = 'green';
-                    status.innerText = 'Word document downloaded successfully!';
-                } 
-                else if (type === 'png' || type === 'jpg') {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = 800;
-                    canvas.height = 600;
-                    const ctx = canvas.getContext('2d');
-                    ctx.fillStyle = '#ffffff';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = '#333333';
-                    ctx.font = '18px sans-serif';
-                    
-                    let lines = text.split('\n');
-                    let y = 40;
-                    for(let i=0; i<lines.length && y < 550; i++) {
-                        ctx.fillText(lines[i], 30, y);
-                        y += 25;
-                    }
+                const { PDFDocument, rgb } = PDFLib;
+                const pdfDoc = await PDFDocument.create();
+                const page = pdfDoc.addPage([600, 400]);
+                page.drawText(textVal, { x: 50, y: 330, size: 16, color: rgb(0.12, 0.14, 0.19) });
+                const pdfBytes = await pdfDoc.save();
+                triggerDownload(new Blob([pdfBytes], { type: 'application/pdf' }), 'PDFify-Text-Output.pdf');
+                msgBox.style.color = 'green'; msgBox.innerText = 'PDF successfully created and downloaded!';
+            } catch (err) { msgBox.style.color = 'red'; msgBox.innerText = 'Error: ' + err.message; }
+        }
 
-                    const mime = type === 'png' ? 'image/png' : 'image/jpeg';
-                    const ext = type === 'png' ? 'png' : 'jpg';
-                    const url = canvas.toDataURL(mime);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'pdfify-image.' + ext;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    status.style.color = 'green';
-                    status.innerText = type.toUpperCase() + ' image downloaded successfully!';
-                }
-            } catch (err) {
-                status.style.color = 'red';
-                status.innerText = 'Error: ' + err.message;
-            }
+        // Real Image Generation
+        function downloadRealImage(format) {
+            const textVal = document.getElementById('user-custom-text').value.trim();
+            const msgBox = document.getElementById('text-status-msg');
+            if (!textVal) { msgBox.style.color = 'red'; msgBox.innerText = 'Pehle kuch text ya message toh likhein!'; return; }
+            msgBox.style.color = 'blue'; msgBox.innerText = `Generating valid ${format.toUpperCase()} image...`;
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 800; canvas.height = 600;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#1f2430'; ctx.font = '24px sans-serif';
+                ctx.fillText(textVal, 50, 80);
+                canvas.toBlob(function(blob) {
+                    triggerDownload(blob, `PDFify-Text-Output.${format}`);
+                    msgBox.style.color = 'green'; msgBox.innerText = `${format.toUpperCase()} image downloaded!`;
+                }, format === 'jpg' ? 'image/jpeg' : 'image/png');
+            } catch (err) { msgBox.style.color = 'red'; msgBox.innerText = 'Error: ' + err.message; }
+        }
+
+        // Original Proven Word Generation Method
+        function downloadRealWord() {
+            const textVal = document.getElementById('user-custom-text').value.trim();
+            const msgBox = document.getElementById('text-status-msg');
+            if (!textVal) { msgBox.style.color = 'red'; msgBox.innerText = 'Pehle kuch text ya message toh likhein!'; return; }
+            msgBox.style.color = 'blue'; msgBox.innerText = 'Generating Word document...';
+            try {
+                const htmlContent = `<html><body><p>${textVal.replace(/\n/g, '<br>')}</p></body></html>`;
+                triggerDownload(new Blob(['\ufeff' + htmlContent], { type: 'application/msword' }), 'PDFify-Text-Output.doc');
+                msgBox.style.color = 'green'; msgBox.innerText = 'Word document downloaded!';
+            } catch (err) { msgBox.style.color = 'red'; msgBox.innerText = 'Error: ' + err.message; }
         }
     </script>
 </body>
-</html>
+    </html>
