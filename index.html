@@ -3,58 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDFify Online - Free Browser-Based PDF Tools</title>
-    <meta name="description" content="100% Free, Secure & Fast PDF tools right in your browser.">
+    <title>PDFify Online - All 34 PDF Tools in One Place</title>
+    <meta name="description" content="Every tool you need to work with PDFs in one place. 100% free, secure and fast!">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary: #e53935; --dark: #222; --light: #f9f9f9; --gray: #666; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: #faf8f5; color: var(--dark); line-height: 1.6; }
-        header { background: #fff; border-bottom: 1px solid #eee; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 22px; font-weight: bold; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        nav a { margin-left: 20px; text-decoration: none; color: var(--gray); font-weight: 500; }
-        nav a:hover { color: var(--primary); }
-        .hero { text-align: center; padding: 60px 20px 40px; background: #fff; border-bottom: 1px solid #eee; }
-        .hero h1 { font-size: 38px; margin-bottom: 15px; color: #111; }
-        .hero p { font-size: 18px; color: var(--gray); max-width: 600px; margin: 0 auto; }
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-        .card { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #eee; display: flex; flex-direction: column; gap: 10px; }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); border-color: var(--primary); }
-        .card i { font-size: 28px; color: var(--primary); margin-bottom: 5px; }
-        .card h3 { font-size: 18px; margin-bottom: 5px; }
-        .card p { font-size: 14px; color: var(--gray); }
-        footer { text-align: center; padding: 30px; background: #fff; border-top: 1px solid #eee; margin-top: 60px; color: var(--gray); font-size: 14px; }
+        :root { --ilovepdf-red: #e53238; --ilovepdf-dark: #333333; --ilovepdf-gray: #f8f9fa; --border-color: #e5e5e5; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background: #fff; color: var(--ilovepdf-dark); line-height: 1.5; }
+        header { background: #fff; border-bottom: 1px solid var(--border-color); padding: 0 40px; display: flex; justify-content: space-between; align-items: center; height: 70px; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--ilovepdf-red); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--ilovepdf-dark); }
+        nav { display: flex; align-items: center; gap: 20px; }
+        nav a { text-decoration: none; color: #3b4146; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        nav a:hover { color: var(--ilovepdf-red); }
+        .nav-btns { display: flex; gap: 12px; align-items: center; }
+        .btn-login { color: #3b4146; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
+        .btn-signup { background: var(--ilovepdf-red); color: #fff; padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
+
+        .hero { text-align: center; padding: 60px 20px 30px; background: #fff; }
+        .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 15px; color: #1f2328; }
+        .hero p { font-size: 18px; color: #6c757d; max-width: 700px; margin: 0 auto; }
+
+        .container { max-width: 1200px; margin: 30px auto 60px; padding: 0 20px; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 25px; }
+        .tool-card { background: #fff; border: 1px solid var(--border-color); border-radius: 8px; padding: 30px 25px; text-decoration: none; color: inherit; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: #d1d5db; }
+        .tool-card i { font-size: 36px; color: var(--ilovepdf-red); margin-bottom: 5px; }
+        .tool-card h3 { font-size: 18px; font-weight: 700; color: #1f2328; }
+        .tool-card p { font-size: 14px; color: #6c757d; line-height: 1.4; }
+
+        footer { background: #1f2328; color: #9ca3af; padding: 50px 40px; font-size: 14px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #374151; padding-bottom: 25px; }
+        .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        .footer-links a { color: #9ca3af; text-decoration: none; }
+        .footer-links a:hover { color: #fff; }
+        .footer-bottom { max-width: 1200px; margin: 25px auto 0; text-align: center; color: #6b7280; font-size: 13px; }
     </style>
 </head>
 <body>
     <header>
-        <a href="/" class="logo"><i class="fa-solid fa-heart-pulse"></i> PDFify Online</a>
+        <a href="/" class="logo"><i class="fa-solid fa-heart-pulse"></i> PDFify<span>Online</span></a>
         <nav>
-            <a href="/">Home</a>
-            <a href="/about/">About Us</a>
+            <a href="/merge-pdf/">Merge</a>
+            <a href="/split-pdf/">Split</a>
+            <a href="/compress-pdf/">Compress</a>
             <a href="/api-guide/">API</a>
-            <a href="/login/">Login</a>
+            <a href="/about/">About</a>
         </nav>
+        <div class="nav-btns">
+            <a href="/login/" class="btn-login">Login</a>
+            <a href="/login/" class="btn-signup">Sign up</a>
+        </div>
     </header>
+
     <section class="hero">
         <h1>Every tool you need to work with PDFs in one place</h1>
-        <p>Every tool is 100% free and easy to use. Merge, split, compress, convert, rotate, unlock and watermark PDFs with a few clicks.</p>
+        <p>All 34 PDF tools are 100% free and easy to use! Merge, split, compress, convert, edit and sign PDFs instantly.</p>
     </section>
+
     <div class="container">
-        <div class="grid">
-            <a href="/merge-pdf/" class="card"><i class="fa-solid fa-object-ungroup"></i><h3>Merge PDF</h3><p>Combine PDFs in the order you want with the easiest PDF merger available.</p></a>
-            <a href="/split-pdf/" class="card"><i class="fa-solid fa-scissors"></i><h3>Split PDF</h3><p>Separate one page or a whole set for easy conversion into independent PDF files.</p></a>
-            <a href="/compress-pdf/" class="card"><i class="fa-solid fa-compress"></i><h3>Compress PDF</h3><p>Reduce file size while optimizing for maximal PDF quality.</p></a>
-            <a href="/pdf-to-word/" class="card"><i class="fa-solid fa-file-word"></i><h3>PDF to Word</h3><p>Easily convert your PDF files into easy to edit DOC and DOCX documents.</p></a>
-            <a href="/pdf-to-excel/" class="card"><i class="fa-solid fa-file-excel"></i><h3>PDF to Excel</h3><p>Pull data straight from PDFs into Excel spreadsheets in seconds.</p></a>
-            <a href="/pdf-to-jpg/" class="card"><i class="fa-solid fa-file-image"></i><h3>PDF to JPG</h3><p>Extract each page or save all pages of a PDF into high quality JPGs.</p></a>
-            <a href="/edit-pdf/" class="card"><i class="fa-solid fa-pen-to-square"></i><h3>Edit PDF</h3><p>Add text, images, shapes or freehand annotations to a PDF.</p></a>
-            <a href="/sign-pdf/" class="card"><i class="fa-solid fa-signature"></i><h3>Sign PDF</h3><p>Sign your document or request signatures from other parties.</p></a>
+        <div class="tools-grid">
+            <a href="/merge-pdf/" class="tool-card"><i class="fa-solid fa-object-ungroup"></i><h3>Merge PDF</h3><p>Combine PDFs in the order you want with the easiest PDF merger available.</p></a><a href="/split-pdf/" class="tool-card"><i class="fa-solid fa-scissors"></i><h3>Split PDF</h3><p>Separate one page or a whole set for easy conversion into independent PDF files.</p></a><a href="/compress-pdf/" class="tool-card"><i class="fa-solid fa-compress"></i><h3>Compress PDF</h3><p>Reduce file size while optimizing for maximal PDF quality.</p></a><a href="/pdf-to-word/" class="tool-card"><i class="fa-solid fa-file-word"></i><h3>PDF to Word</h3><p>Easily convert your PDF files into easy to edit DOC and DOCX documents.</p></a><a href="/pdf-to-powerpoint/" class="tool-card"><i class="fa-solid fa-file-powerpoint"></i><h3>PDF to Powerpoint</h3><p>Turn your PDF presentations into easy to edit PPT and PPTX slideshows.</p></a><a href="/pdf-to-excel/" class="tool-card"><i class="fa-solid fa-file-excel"></i><h3>PDF to Excel</h3><p>Pull data straight from PDFs into Excel spreadsheets in seconds.</p></a><a href="/word-to-pdf/" class="tool-card"><i class="fa-solid fa-file-pdf"></i><h3>Word to PDF</h3><p>Make DOC and DOCX files easy to read by converting them to PDF.</p></a><a href="/powerpoint-to-pdf/" class="tool-card"><i class="fa-solid fa-file-pdf"></i><h3>Powerpoint to PDF</h3><p>Make PPT and PPTX slideshows easy to view by converting them to PDF.</p></a><a href="/excel-to-pdf/" class="tool-card"><i class="fa-solid fa-file-pdf"></i><h3>Excel to PDF</h3><p>Make Excel spreadsheets easy to view by converting them to PDF.</p></a><a href="/edit-pdf/" class="tool-card"><i class="fa-solid fa-pen-to-square"></i><h3>Edit PDF</h3><p>Add text, images, shapes or freehand annotations to a PDF.</p></a><a href="/pdf-to-jpg/" class="tool-card"><i class="fa-solid fa-file-image"></i><h3>PDF to JPG</h3><p>Extract each page or save all pages of a PDF into high quality JPGs.</p></a><a href="/jpg-to-pdf/" class="tool-card"><i class="fa-solid fa-file-image"></i><h3>JPG to PDF</h3><p>Convert JPG images to PDF in seconds. Easily adjust orientation and margins.</p></a><a href="/sign-pdf/" class="tool-card"><i class="fa-solid fa-signature"></i><h3>Sign PDF</h3><p>Sign your document or request signatures from other parties.</p></a><a href="/watermark-pdf/" class="tool-card"><i class="fa-solid fa-stamp"></i><h3>Watermark PDF</h3><p>Stamp an image or text over your PDF in seconds. Choose typography, transparency and position.</p></a><a href="/rotate-pdf/" class="tool-card"><i class="fa-solid fa-rotate"></i><h3>Rotate PDF</h3><p>Rotate your PDFs the way you need them. You can even rotate multiple PDFs at once!</p></a><a href="/html-to-pdf/" class="tool-card"><i class="fa-solid fa-code"></i><h3>HTML to PDF</h3><p>Convert web pages from HTML to PDF. Copy and paste URL of pages you want and convert them.</p></a><a href="/unlock-pdf/" class="tool-card"><i class="fa-solid fa-unlock"></i><h3>Unlock PDF</h3><p>Remove PDF password security, giving you the freedom to use your PDFs as you want.</p></a><a href="/protect-pdf/" class="tool-card"><i class="fa-solid fa-lock"></i><h3>Protect PDF</h3><p>Encrypt your PDF with a password to keep sensitive data confidential.</p></a><a href="/remove-pdf-pages/" class="tool-card"><i class="fa-solid fa-trash-can"></i><h3>Remove Pages</h3><p>Remove pages from your PDF file. You are in control of your document structure.</p></a><a href="/extract-pdf-pages/" class="tool-card"><i class="fa-solid fa-file-lines"></i><h3>Extract Pages</h3><p>Get a few pages from your PDF or grab every page to convert into independent files.</p></a><a href="/organize-pdf/" class="tool-card"><i class="fa-solid fa-folder-open"></i><h3>Organize PDF</h3><p>Sort, add and delete PDF pages. Drag and drop the pages of your PDF file to reorder them.</p></a><a href="/scan-pdf-to-pdf/" class="tool-card"><i class="fa-solid fa-scanner"></i><h3>Scan to PDF</h3><p>Scan your paper documents into searchable PDFs instantly.</p></a><a href="/ocr-pdf/" class="tool-card"><i class="fa-solid fa-font"></i><h3>OCR PDF</h3><p>Convert scanned PDFs into searchable and selectable documents with OCR.</p></a><a href="/compare-pdf/" class="tool-card"><i class="fa-solid fa-columns"></i><h3>Compare PDF</h3><p>Compare two PDF files side by side to spot differences and changes.</p></a><a href="/repair-pdf/" class="tool-card"><i class="fa-solid fa-wrench"></i><h3>Repair PDF</h3><p>Repair a damaged PDF and recover data from corrupt PDF files.</p></a><a href="/add-page-numbers/" class="tool-card"><i class="fa-solid fa-list-ol"></i><h3>Page Numbers</h3><p>Add page numbers into PDFs with custom formatting and positions.</p></a><a href="/crop-pdf/" class="tool-card"><i class="fa-solid fa-crop"></i><h3>Crop PDF</h3><p>Crop margins and select specific areas of your PDF pages easily.</p></a><a href="/flatten-pdf/" class="tool-card"><i class="fa-solid fa-layer-group"></i><h3>Flatten PDF</h3><p>Flatten form fields and annotations into static PDF layers.</p></a><a href="/grayscale-pdf/" class="tool-card"><i class="fa-solid fa-circle-half-stroke"></i><h3>Grayscale PDF</h3><p>Convert colorful PDFs into black and white or grayscale documents.</p></a><a href="/pdf-to-pdfa/" class="tool-card"><i class="fa-solid fa-archive"></i><h3>PDF to PDF/A</h3><p>Convert your PDF to PDF/A compliant documents for long-term archiving.</p></a><a href="/redact-pdf/" class="tool-card"><i class="fa-solid fa-eraser"></i><h3>Redact PDF</h3><p>Permanently remove sensitive text and confidential images from PDFs.</p></a><a href="/pdf-to-text/" class="tool-card"><i class="fa-solid fa-file-lines"></i><h3>PDF to Text</h3><p>Extract all plain text content from your PDF documents instantly.</p></a><a href="/invert-pdf/" class="tool-card"><i class="fa-solid fa-circle-half-stroke"></i><h3>Invert PDF</h3><p>Invert colors in your PDF for easier reading in dark environments.</p></a><a href="/bates-numbering/" class="tool-card"><i class="fa-solid fa-scale-balanced"></i><h3>Bates Numbering</h3><p>Add legal Bates stamping to multi-page legal documents.</p></a>
         </div>
     </div>
+
     <footer>
-        Copyright 2026@ Create by Kamran Khan
+        <div class="footer-content">
+            <div style="font-size: 20px; font-weight: bold; color: #fff;"><i class="fa-solid fa-heart-pulse" style="color:var(--ilovepdf-red);"></i> PDFifyOnline</div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/about/">About</a>
+                <a href="/security/">Security</a>
+                <a href="/api-guide/">API</a>
+                <a href="/login/">Login</a>
+                <a href="/faq/">FAQ</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Copyright 2026@ Create by Kamran Khan
+        </div>
     </footer>
 </body>
 </html>

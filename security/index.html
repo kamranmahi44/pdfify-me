@@ -3,50 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security & Privacy Policy - PDFify Online</title>
-    <meta name="description" content="Learn how PDFify protects your data with enterprise-grade encryption.">
+    <title>Security & Privacy - PDFify Online</title>
+    <meta name="description" content="Learn how PDFify protects your private documents with browser-side execution.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary: #e53935; --dark: #222; --light: #f9f9f9; --gray: #666; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: #faf8f5; color: var(--dark); line-height: 1.6; }
-        header { background: #fff; border-bottom: 1px solid #eee; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 22px; font-weight: bold; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        nav a { margin-left: 20px; text-decoration: none; color: var(--gray); font-weight: 500; }
-        nav a:hover { color: var(--primary); }
-        .main-content { max-width: 800px; margin: 50px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; }
-        h1 { font-size: 32px; margin-bottom: 15px; color: #111; }
-        p { font-size: 16px; color: var(--gray); margin-bottom: 30px; }
-        .content-box { padding: 30px; background: #fdfbf7; border: 1px dashed #e53935; border-radius: 8px; margin-bottom: 30px; }
-        .btn { background: var(--primary); color: #fff; padding: 12px 30px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; text-decoration: none; display: inline-block; font-weight: 600; }
-        .btn:hover { background: #d32f2f; }
-        .back-link { display: inline-block; margin-top: 20px; color: var(--gray); text-decoration: none; }
-        .back-link:hover { color: var(--primary); }
-        footer { text-align: center; padding: 30px; color: var(--gray); font-size: 14px; margin-top: 50px; border-top: 1px solid #eee; background: #fff; }
+        :root { --ilovepdf-red: #e53238; --ilovepdf-dark: #333333; --border-color: #e5e5e5; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background: #fff; color: var(--ilovepdf-dark); line-height: 1.5; }
+        
+        header { background: #fff; border-bottom: 1px solid var(--border-color); padding: 0 40px; display: flex; justify-content: space-between; align-items: center; height: 70px; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--ilovepdf-red); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--ilovepdf-dark); }
+        nav { display: flex; align-items: center; gap: 20px; }
+        nav a { text-decoration: none; color: #3b4146; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        nav a:hover { color: var(--ilovepdf-red); }
+        .nav-btns { display: flex; gap: 12px; align-items: center; }
+        .btn-login { color: #3b4146; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
+        .btn-signup { background: var(--ilovepdf-red); color: #fff; padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
+
+        .main-container { max-width: 900px; margin: 50px auto; padding: 40px; background: #fff; border: 1px solid var(--border-color); border-radius: 12px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        h1 { font-size: 34px; font-weight: 700; margin-bottom: 12px; color: #1f2328; }
+        p.desc { font-size: 16px; color: #6c757d; margin-bottom: 35px; }
+        .back-link { display: inline-block; margin-top: 30px; color: #6b7280; text-decoration: none; font-weight: 600; font-size: 15px; }
+        .back-link:hover { color: var(--ilovepdf-red); }
+
+        footer { background: #1f2328; color: #9ca3af; padding: 40px; font-size: 14px; margin-top: 80px; text-align: center; }
+        footer p { color: #6b7280; margin-top: 15px; font-size: 13px; }
+        .btn-action { background: var(--ilovepdf-red); color: #fff; padding: 12px 35px; border: none; border-radius: 6px; font-size: 16px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn-action:hover { background: #d02a30; }
     </style>
 </head>
 <body>
     <header>
-        <a href="/" class="logo"><i class="fa-solid fa-heart-pulse"></i> PDFify Online</a>
+        <a href="/" class="logo"><i class="fa-solid fa-heart-pulse" style="color:var(--ilovepdf-red);"></i> PDFify<span>Online</span></a>
         <nav>
             <a href="/">Home</a>
-            <a href="/about/">About Us</a>
+            <a href="/about/">About</a>
             <a href="/api-guide/">API</a>
             <a href="/login/">Login</a>
         </nav>
-    </header>
-    <div class="main-content">
-        <h1>Security & Privacy Policy</h1>
-        <p>Learn how PDFify protects your data with enterprise-grade encryption.</p>
-        <div class="content-box">
-            <h3 style="margin-bottom: 10px; color: #333;">Security & Privacy Policy Workspace</h3>
-            <p style="margin-bottom: 20px;">Dedicated interface for security & privacy policy with full browser-side client execution.</p>
-            <button class='btn'>Start Processing Now</button>
+        <div class="nav-btns">
+            <a href="/login/" class="btn-login">Login</a>
+            <a href="/login/" class="btn-signup">Sign up</a>
         </div>
-        <a href="/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to All Tools</a>
+    </header>
+
+    <div class="main-container">
+        <h1>Security & Privacy</h1>
+        <p class="desc">Learn how PDFify protects your private documents with browser-side execution.</p>
+        <div style="text-align:left; line-height:1.8; color:#4b5563; font-size:16px; max-width:700px; margin:0 auto;"><p>Your privacy is our utmost priority. All PDF processing operations occur entirely inside your web browser via advanced client-side scripts.</p><p style="margin-top:15px;">Your documents never leave your local device, ensuring 100% data confidentiality and protection.</p></div>
+        <br>
+        <a href="/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to all PDF tools</a>
     </div>
+
     <footer>
-        Copyright 2026@ Create by Kamran Khan
+        <div style="font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;"><i class="fa-solid fa-heart-pulse" style="color:var(--ilovepdf-red);"></i> PDFifyOnline</div>
+        <p>Copyright 2026@ Create by Kamran Khan</p>
     </footer>
 </body>
 </html>

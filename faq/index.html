@@ -3,52 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - PDFify Online</title>
-    <meta name="description" content="Frequently asked questions about PDFify online tools and services.">
-    <meta name="author" content="Muhammad Kamran">
-    <link rel="canonical" href="https://pdfify.online/faq/">
-    <link rel="icon" href="/favicon.ico" sizes="any">
+    <title>Frequently Asked Questions - PDFify Online</title>
+    <meta name="description" content="Find answers to common questions about PDFify tools and services.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary-red: #e5322d; --dark-navy: #1f2430; --light-bg: #f8f9fa; --border-color: #e2e8f0; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--light-bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background: #fff; border-bottom: 1px solid var(--border-color); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 18px; font-weight: 800; color: var(--dark-navy); text-decoration: none; display: flex; align-items: center; gap: 6px; }
-        .logo i { color: var(--primary-red); }
-        .logo span { color: var(--primary-red); }
-        .container { max-width: 650px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center; flex: 1; }
-        h1 { font-size: 24px; color: var(--dark-navy); margin-bottom: 15px; }
-        p { font-size: 14px; color: #666; margin-bottom: 25px; line-height: 1.5; }
-        .upload-box { border: 2px dashed #cbd5e1; border-radius: 10px; padding: 40px 20px; background: #f8fafc; cursor: pointer; margin-bottom: 20px; }
-        .upload-box i { font-size: 40px; color: var(--primary-red); margin-bottom: 10px; }
-        .btn { background: var(--primary-red); color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
-        .btn:hover { background: #c8231f; }
-        .back-home { display: inline-block; margin-top: 20px; color: var(--dark-navy); text-decoration: none; font-size: 13px; font-weight: 600; }
-        .back-home:hover { color: var(--primary-red); }
-        footer { background: var(--dark-navy); color: #a0aec0; text-align: center; padding: 20px; font-size: 12px; margin-top: auto; }
+        :root { --ilovepdf-red: #e53238; --ilovepdf-dark: #333333; --border-color: #e5e5e5; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background: #fff; color: var(--ilovepdf-dark); line-height: 1.5; }
+        
+        header { background: #fff; border-bottom: 1px solid var(--border-color); padding: 0 40px; display: flex; justify-content: space-between; align-items: center; height: 70px; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--ilovepdf-red); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--ilovepdf-dark); }
+        nav { display: flex; align-items: center; gap: 20px; }
+        nav a { text-decoration: none; color: #3b4146; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        nav a:hover { color: var(--ilovepdf-red); }
+        .nav-btns { display: flex; gap: 12px; align-items: center; }
+        .btn-login { color: #3b4146; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
+        .btn-signup { background: var(--ilovepdf-red); color: #fff; padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
+
+        .main-container { max-width: 900px; margin: 50px auto; padding: 40px; background: #fff; border: 1px solid var(--border-color); border-radius: 12px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        h1 { font-size: 34px; font-weight: 700; margin-bottom: 12px; color: #1f2328; }
+        p.desc { font-size: 16px; color: #6c757d; margin-bottom: 35px; }
+        .back-link { display: inline-block; margin-top: 30px; color: #6b7280; text-decoration: none; font-weight: 600; font-size: 15px; }
+        .back-link:hover { color: var(--ilovepdf-red); }
+
+        footer { background: #1f2328; color: #9ca3af; padding: 40px; font-size: 14px; margin-top: 80px; text-align: center; }
+        footer p { color: #6b7280; margin-top: 15px; font-size: 13px; }
+        .btn-action { background: var(--ilovepdf-red); color: #fff; padding: 12px 35px; border: none; border-radius: 6px; font-size: 16px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn-action:hover { background: #d02a30; }
     </style>
 </head>
 <body>
     <header>
-        <a href="https://pdfify.online/" class="logo"><i class="fa-solid fa-heart"></i> <span>PDFify Online</span></a>
-        <a href="https://pdfify.online/" class="back-home" style="margin:0;"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="/" class="logo"><i class="fa-solid fa-heart-pulse" style="color:var(--ilovepdf-red);"></i> PDFify<span>Online</span></a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/api-guide/">API</a>
+            <a href="/login/">Login</a>
+        </nav>
+        <div class="nav-btns">
+            <a href="/login/" class="btn-login">Login</a>
+            <a href="/login/" class="btn-signup">Sign up</a>
+        </div>
     </header>
-    <div class="container">
-        <h1>FAQ</h1>
-        <p>Frequently asked questions about PDFify online tools and services.</p>
-        <div class="upload-box" onclick="alert('Select your file to process online securely!')">
-            <i class="fa-solid fa-cloud-arrow-up"></i>
-            <h3>Drop your files here or click to browse</h3>
-            <p style="font-size:12px; color:#888; margin-top:5px;">100% Free, Secure & Fast Processing in Browser</p>
-        </div>
-        <button class="btn" onclick="alert('Processing FAQ...')">Process File Now</button>
-        <div>
-            <a href="https://pdfify.online/" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to All Tools</a>
-        </div>
+
+    <div class="main-container">
+        <h1>Frequently Asked Questions</h1>
+        <p class="desc">Find answers to common questions about PDFify tools and services.</p>
+        <div style="text-align:left; line-height:1.8; color:#4b5563; font-size:16px; max-width:700px; margin:0 auto;"><p><strong>Q: Are these PDF tools free?</strong><br>A: Yes, all 34 tools on PDFify Online are 100% free to use.</p><p style="margin-top:15px;"><strong>Q: Is my data safe?</strong><br>A: Completely safe. All processing happens in your browser locally.</p></div>
+        <br>
+        <a href="/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to all PDF tools</a>
     </div>
+
     <footer>
-        &copy; 2026 PDFify.online - Muhammad Kamran | Muscat, Oman
+        <div style="font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;"><i class="fa-solid fa-heart-pulse" style="color:var(--ilovepdf-red);"></i> PDFifyOnline</div>
+        <p>Copyright 2026@ Create by Kamran Khan</p>
     </footer>
 </body>
 </html>

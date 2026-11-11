@@ -3,52 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerPoint to PDF - PDFify Online</title>
-    <meta name="description" content="Turn your PPT and PPTX slideshows into professional PDFs.">
-    <meta name="author" content="Muhammad Kamran">
-    <link rel="canonical" href="https://pdfify.online/powerpoint-to-pdf/">
-    <link rel="icon" href="/favicon.ico" sizes="any">
+    <title>Powerpoint to PDF - PDFify Online</title>
+    <meta name="description" content="Make PPT and PPTX slideshows easy to view by converting them to PDF.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary-red: #e5322d; --dark-navy: #1f2430; --light-bg: #f8f9fa; --border-color: #e2e8f0; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--light-bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background: #fff; border-bottom: 1px solid var(--border-color); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 18px; font-weight: 800; color: var(--dark-navy); text-decoration: none; display: flex; align-items: center; gap: 6px; }
-        .logo i { color: var(--primary-red); }
-        .logo span { color: var(--primary-red); }
-        .container { max-width: 650px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center; flex: 1; }
-        h1 { font-size: 24px; color: var(--dark-navy); margin-bottom: 15px; }
-        p { font-size: 14px; color: #666; margin-bottom: 25px; line-height: 1.5; }
-        .upload-box { border: 2px dashed #cbd5e1; border-radius: 10px; padding: 40px 20px; background: #f8fafc; cursor: pointer; margin-bottom: 20px; }
-        .upload-box i { font-size: 40px; color: var(--primary-red); margin-bottom: 10px; }
-        .btn { background: var(--primary-red); color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
-        .btn:hover { background: #c8231f; }
-        .back-home { display: inline-block; margin-top: 20px; color: var(--dark-navy); text-decoration: none; font-size: 13px; font-weight: 600; }
-        .back-home:hover { color: var(--primary-red); }
-        footer { background: var(--dark-navy); color: #a0aec0; text-align: center; padding: 20px; font-size: 12px; margin-top: auto; }
+        :root { --ilovepdf-red: #e53238; --ilovepdf-dark: #333333; --ilovepdf-gray: #f8f9fa; --border-color: #e5e5e5; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background: #fff; color: var(--ilovepdf-dark); line-height: 1.5; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        header { background: #fff; border-bottom: 1px solid var(--border-color); padding: 0 40px; display: flex; justify-content: space-between; align-items: center; height: 70px; position: sticky; top: 0; z-index: 1000; flex-shrink: 0; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--ilovepdf-red); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--ilovepdf-dark); }
+        nav { display: flex; align-items: center; gap: 20px; }
+        nav a { text-decoration: none; color: #3b4146; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        nav a:hover { color: var(--ilovepdf-red); }
+        .nav-btns { display: flex; gap: 12px; align-items: center; }
+        .btn-login { color: #3b4146; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
+        .btn-signup { background: var(--ilovepdf-red); color: #fff; padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
+
+        /* Main Layout with Sidebar */
+        .wrapper { display: flex; flex: 1; max-width: 1400px; width: 100%; margin: 0 auto; }
+        
+        /* Left Sidebar with all 34 tools */
+        aside { width: 280px; background: #fafbfc; border-right: 1px solid var(--border-color); padding: 20px 0; overflow-y: auto; height: calc(100vh - 70px); position: sticky; top: 70px; flex-shrink: 0; }
+        aside h3 { font-size: 13px; text-transform: uppercase; color: #6b7280; padding: 0 20px 10px; letter-spacing: 0.5px; }
+        aside a { display: flex; align-items: center; gap: 12px; padding: 10px 20px; color: #374151; text-decoration: none; font-size: 14px; font-weight: 500; transition: background 0.15s; }
+        aside a:hover, aside a.active { background: #fee2e2; color: var(--ilovepdf-red); font-weight: 600; }
+        aside a i { width: 20px; text-align: center; color: var(--ilovepdf-red); }
+
+        /* Content Area */
+        .content-area { flex: 1; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; background: #fff; }
+        .tool-box { max-width: 700px; width: 100%; text-align: center; background: #fff; border: 1px solid var(--border-color); border-radius: 12px; padding: 50px 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-top: 20px; }
+        .tool-box i.main-icon { font-size: 56px; color: var(--ilovepdf-red); margin-bottom: 15px; }
+        .tool-box h1 { font-size: 32px; font-weight: 700; margin-bottom: 10px; color: #1f2328; }
+        .tool-box p.desc { font-size: 16px; color: #6c757d; margin-bottom: 30px; }
+        
+        .dropzone { background: #f8f9fa; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 40px 20px; margin-bottom: 25px; }
+        .btn-action { background: var(--ilovepdf-red); color: #fff; padding: 14px 35px; border: none; border-radius: 6px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(229,50,56,0.3); text-decoration: none; display: inline-block; }
+        .btn-action:hover { background: #d02a30; }
+
+        footer { background: #1f2328; color: #9ca3af; padding: 40px; font-size: 14px; text-align: center; flex-shrink: 0; }
+        footer p { color: #6b7280; margin-top: 15px; font-size: 13px; }
+
+        @media(max-width: 992px) {
+            .wrapper { flex-direction: column; }
+            aside { width: 100%; height: auto; position: static; max-height: 300px; border-right: none; border-bottom: 1px solid var(--border-color); }
+            header { padding: 0 20px; height: auto; flex-direction: column; gap: 15px; padding: 15px 0; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 12px; }
+        }
     </style>
 </head>
 <body>
     <header>
-        <a href="https://pdfify.online/" class="logo"><i class="fa-solid fa-heart"></i> <span>PDFify Online</span></a>
-        <a href="https://pdfify.online/" class="back-home" style="margin:0;"><i class="fa-solid fa-house"></i> Home</a>
-    </header>
-    <div class="container">
-        <h1>PowerPoint to PDF</h1>
-        <p>Turn your PPT and PPTX slideshows into professional PDFs.</p>
-        <div class="upload-box" onclick="alert('Select your file to process online securely!')">
-            <i class="fa-solid fa-cloud-arrow-up"></i>
-            <h3>Drop your files here or click to browse</h3>
-            <p style="font-size:12px; color:#888; margin-top:5px;">100% Free, Secure & Fast Processing in Browser</p>
+        <a href="/" class="logo"><i class="fa-solid fa-heart-pulse" style="color:var(--ilovepdf-red);"></i> PDFify<span>Online</span></a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/api-guide/">API</a>
+            <a href="/login/">Login</a>
+        </nav>
+        <div class="nav-btns">
+            <a href="/login/" class="btn-login">Login</a>
+            <a href="/login/" class="btn-signup">Sign up</a>
         </div>
-        <button class="btn" onclick="alert('Processing PowerPoint to PDF...')">Process File Now</button>
-        <div>
-            <a href="https://pdfify.online/" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to All Tools</a>
+    </header>
+
+    <div class="wrapper">
+        <aside>
+            <h3>All 34 PDF Tools</h3>
+            <a href="/merge-pdf/"><i class="fa-solid fa-object-ungroup"></i> Merge PDF</a><a href="/split-pdf/"><i class="fa-solid fa-scissors"></i> Split PDF</a><a href="/compress-pdf/"><i class="fa-solid fa-compress"></i> Compress PDF</a><a href="/pdf-to-word/"><i class="fa-solid fa-file-word"></i> PDF to Word</a><a href="/pdf-to-powerpoint/"><i class="fa-solid fa-file-powerpoint"></i> PDF to Powerpoint</a><a href="/pdf-to-excel/"><i class="fa-solid fa-file-excel"></i> PDF to Excel</a><a href="/word-to-pdf/"><i class="fa-solid fa-file-pdf"></i> Word to PDF</a><a href="/powerpoint-to-pdf/"><i class="fa-solid fa-file-pdf"></i> Powerpoint to PDF</a><a href="/excel-to-pdf/"><i class="fa-solid fa-file-pdf"></i> Excel to PDF</a><a href="/edit-pdf/"><i class="fa-solid fa-pen-to-square"></i> Edit PDF</a><a href="/pdf-to-jpg/"><i class="fa-solid fa-file-image"></i> PDF to JPG</a><a href="/jpg-to-pdf/"><i class="fa-solid fa-file-image"></i> JPG to PDF</a><a href="/sign-pdf/"><i class="fa-solid fa-signature"></i> Sign PDF</a><a href="/watermark-pdf/"><i class="fa-solid fa-stamp"></i> Watermark PDF</a><a href="/rotate-pdf/"><i class="fa-solid fa-rotate"></i> Rotate PDF</a><a href="/html-to-pdf/"><i class="fa-solid fa-code"></i> HTML to PDF</a><a href="/unlock-pdf/"><i class="fa-solid fa-unlock"></i> Unlock PDF</a><a href="/protect-pdf/"><i class="fa-solid fa-lock"></i> Protect PDF</a><a href="/remove-pdf-pages/"><i class="fa-solid fa-trash-can"></i> Remove Pages</a><a href="/extract-pdf-pages/"><i class="fa-solid fa-file-lines"></i> Extract Pages</a><a href="/organize-pdf/"><i class="fa-solid fa-folder-open"></i> Organize PDF</a><a href="/scan-pdf-to-pdf/"><i class="fa-solid fa-scanner"></i> Scan to PDF</a><a href="/ocr-pdf/"><i class="fa-solid fa-font"></i> OCR PDF</a><a href="/compare-pdf/"><i class="fa-solid fa-columns"></i> Compare PDF</a><a href="/repair-pdf/"><i class="fa-solid fa-wrench"></i> Repair PDF</a><a href="/add-page-numbers/"><i class="fa-solid fa-list-ol"></i> Page Numbers</a><a href="/crop-pdf/"><i class="fa-solid fa-crop"></i> Crop PDF</a><a href="/flatten-pdf/"><i class="fa-solid fa-layer-group"></i> Flatten PDF</a><a href="/grayscale-pdf/"><i class="fa-solid fa-circle-half-stroke"></i> Grayscale PDF</a><a href="/pdf-to-pdfa/"><i class="fa-solid fa-archive"></i> PDF to PDF/A</a><a href="/redact-pdf/"><i class="fa-solid fa-eraser"></i> Redact PDF</a><a href="/pdf-to-text/"><i class="fa-solid fa-file-lines"></i> PDF to Text</a><a href="/invert-pdf/"><i class="fa-solid fa-circle-half-stroke"></i> Invert PDF</a><a href="/bates-numbering/"><i class="fa-solid fa-scale-balanced"></i> Bates Numbering</a>
+        </aside>
+
+        <div class="content-area">
+            <div class="tool-box">
+                <i class="fa-solid fa-file-pdf main-icon"></i>
+                <h1>Powerpoint to PDF</h1>
+                <p class="desc">Make PPT and PPTX slideshows easy to view by converting them to PDF.</p>
+                <div class="dropzone">
+                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 40px; color: var(--ilovepdf-red); margin-bottom: 12px;"></i>
+                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Select PDF files</h3>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 20px;">or drop PDFs here</p>
+                    <input type="file" id="fileInput" style="display:none;" onchange="alert('Powerpoint to PDF file loaded successfully!');">
+                    <button onclick="document.getElementById('fileInput').click();" class="btn-action">Select PDF files</button>
+                </div>
+            </div>
         </div>
     </div>
+
     <footer>
-        &copy; 2026 PDFify.online - Muhammad Kamran | Muscat, Oman
+        <div style="font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;"><i class="fa-solid fa-heart-pulse" style="color:var(--ilovepdf-red);"></i> PDFifyOnline</div>
+        <p>Copyright 2026@ Create by Kamran Khan</p>
     </footer>
 </body>
 </html>
