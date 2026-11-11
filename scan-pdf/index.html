@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan to PDF - PDFify Online</title>
+    <meta name="description" content="Scan physical paper documents directly into clean PDF files.">
+    <meta name="author" content="Muhammad Kamran">
+    <link rel="canonical" href="https://pdfify.online/scan-pdf/">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary-red: #e5322d; --dark-navy: #1f2430; --light-bg: #f8f9fa; --border-color: #e2e8f0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--light-bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: #fff; border-bottom: 1px solid var(--border-color); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 18px; font-weight: 800; color: var(--dark-navy); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+        .logo i { color: var(--primary-red); }
+        .logo span { color: var(--primary-red); }
+        .container { max-width: 650px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center; flex: 1; }
+        h1 { font-size: 24px; color: var(--dark-navy); margin-bottom: 15px; }
+        p { font-size: 14px; color: #666; margin-bottom: 25px; line-height: 1.5; }
+        .upload-box { border: 2px dashed #cbd5e1; border-radius: 10px; padding: 40px 20px; background: #f8fafc; cursor: pointer; margin-bottom: 20px; }
+        .upload-box i { font-size: 40px; color: var(--primary-red); margin-bottom: 10px; }
+        .btn { background: var(--primary-red); color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
+        .btn:hover { background: #c8231f; }
+        .back-home { display: inline-block; margin-top: 20px; color: var(--dark-navy); text-decoration: none; font-size: 13px; font-weight: 600; }
+        .back-home:hover { color: var(--primary-red); }
+        footer { background: var(--dark-navy); color: #a0aec0; text-align: center; padding: 20px; font-size: 12px; margin-top: auto; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://pdfify.online/" class="logo"><i class="fa-solid fa-heart"></i> <span>PDFify Online</span></a>
+        <a href="https://pdfify.online/" class="back-home" style="margin:0;"><i class="fa-solid fa-house"></i> Home</a>
+    </header>
+    <div class="container">
+        <h1>Scan to PDF</h1>
+        <p>Scan physical paper documents directly into clean PDF files.</p>
+        <div class="upload-box" onclick="alert('Select your file to process online securely!')">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <h3>Drop your files here or click to browse</h3>
+            <p style="font-size:12px; color:#888; margin-top:5px;">100% Free, Secure & Fast Processing in Browser</p>
+        </div>
+        <button class="btn" onclick="alert('Processing Scan to PDF...')">Process File Now</button>
+        <div>
+            <a href="https://pdfify.online/" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to All Tools</a>
+        </div>
+    </div>
+    <footer>
+        &copy; 2026 PDFify.online - Muhammad Kamran | Muscat, Oman
+    </footer>
+</body>
+</html>

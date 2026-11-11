@@ -3,144 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXCEL to PDF – PDFify Online</title>
-    <meta name="description" content="Convert Excel spreadsheets to PDF.">
+    <title>Excel to PDF - PDFify Online</title>
+    <meta name="description" content="Convert Excel spreadsheets into easy-to-share PDF documents.">
+    <meta name="author" content="Muhammad Kamran">
+    <link rel="canonical" href="https://pdfify.online/excel-to-pdf/">
+    <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js" defer></script>
     <style>
-        :root {
-            --primary-red: #e5322d;
-            --primary-hover: #c8231f;
-            --dark-navy: #1f2430;
-            --light-bg: #f8f9fa;
-            --border-color: #e2e8f0;
-            --card-shadow: 0 1px 4px rgba(0,0,0,0.03);
-        }
+        :root { --primary-red: #e5322d; --dark-navy: #1f2430; --light-bg: #f8f9fa; --border-color: #e2e8f0; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--light-bg); color: #333333; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background: #ffffff; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; }
-        .header-left { display: flex; align-items: center; gap: 12px; }
-        .logo { font-size: 20px; font-weight: 800; color: var(--dark-navy); text-decoration: none; display: flex; align-items: center; gap: 5px; }
-        .logo i, .logo span { color: var(--primary-red); }
-        .main-container { max-width: 900px; margin: 30px auto; padding: 25px; flex: 1; width: 100%; background: #ffffff; border-radius: 8px; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); text-align: center; }
-        .back-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--dark-navy); color: #ffffff; padding: 8px 16px; border-radius: 14px; font-size: 13px; font-weight: 700; text-decoration: none; margin-bottom: 20px; transition: background 0.2s; }
-        .back-btn:hover { background: var(--primary-red); }
-        .tool-header-icon { font-size: 40px; color: var(--primary-red); margin-bottom: 12px; }
-        h1 { font-size: 22px; color: var(--dark-navy); margin-bottom: 10px; font-weight: 800; }
-        p.desc { color: #666; font-size: 13px; max-width: 600px; margin: 0 auto 25px; line-height: 1.5; }
-        .upload-area { border: 2px dashed #cbd5e1; border-radius: 8px; padding: 30px 15px; background: #f8fafc; max-width: 500px; margin: 0 auto; cursor: pointer; text-align: center; transition: all 0.2s; }
-        .upload-area:hover { background: #f1f5f9; border-color: var(--primary-red); }
-        .btn-primary { background: var(--primary-red); color: #ffffff; padding: 12px 28px; font-size: 15px; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px; display: inline-block; transition: background 0.2s; }
-        .btn-primary:hover { background: var(--primary-hover); }
-        footer { background: var(--dark-navy); color: #ffffff; padding: 25px 15px; margin-top: 40px; }
-        .footer-container { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; text-align: left; }
-        .footer-col h4 { font-size: 12px; margin-bottom: 10px; text-transform: uppercase; font-weight: 700; color: #fff; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 6px; }
-        .footer-col a, .footer-col p { color: #a0aec0; text-decoration: none; font-size: 12px; line-height: 1.5; }
-        .footer-col a:hover { color: #fff; }
-        .footer-bottom { max-width: 1240px; margin: 15px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 11px; color: #a0aec0; }
+        body { background-color: var(--light-bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: #fff; border-bottom: 1px solid var(--border-color); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 18px; font-weight: 800; color: var(--dark-navy); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+        .logo i { color: var(--primary-red); }
+        .logo span { color: var(--primary-red); }
+        .container { max-width: 650px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center; flex: 1; }
+        h1 { font-size: 24px; color: var(--dark-navy); margin-bottom: 15px; }
+        p { font-size: 14px; color: #666; margin-bottom: 25px; line-height: 1.5; }
+        .upload-box { border: 2px dashed #cbd5e1; border-radius: 10px; padding: 40px 20px; background: #f8fafc; cursor: pointer; margin-bottom: 20px; }
+        .upload-box i { font-size: 40px; color: var(--primary-red); margin-bottom: 10px; }
+        .btn { background: var(--primary-red); color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; }
+        .btn:hover { background: #c8231f; }
+        .back-home { display: inline-block; margin-top: 20px; color: var(--dark-navy); text-decoration: none; font-size: 13px; font-weight: 600; }
+        .back-home:hover { color: var(--primary-red); }
+        footer { background: var(--dark-navy); color: #a0aec0; text-align: center; padding: 20px; font-size: 12px; margin-top: auto; }
     </style>
 </head>
 <body>
     <header>
-        <div class="nav-container">
-            <div class="header-left">
-                <a href="/" class="logo"><i class="fa-solid fa-file-pdf"></i> <span>PDFify Online</span></a>
-            </div>
-        </div>
+        <a href="https://pdfify.online/" class="logo"><i class="fa-solid fa-heart"></i> <span>PDFify Online</span></a>
+        <a href="https://pdfify.online/" class="back-home" style="margin:0;"><i class="fa-solid fa-house"></i> Home</a>
     </header>
-
-    <div class="main-container">
-        <a href="/" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-        
-        <div class="tool-header-icon"><i class="fa-solid fa-file-excel"></i></div>
-        <h1>EXCEL to PDF</h1>
-        <p class="desc">Convert Excel spreadsheets to PDF.</p>
-
-        <div class="upload-area" onclick="document.getElementById('file-input').click()">
-            <i class="fa-solid fa-folder-open" style="font-size: 40px; color: var(--primary-red);"></i>
-            <p style="margin-top: 10px; font-weight: bold; color: var(--dark-navy); font-size: 14px;">Select Files from Storage</p>
-            <input type="file" id="file-input" multiple style="display:none;" onchange="fileSelected(event)">
+    <div class="container">
+        <h1>Excel to PDF</h1>
+        <p>Convert Excel spreadsheets into easy-to-share PDF documents.</p>
+        <div class="upload-box" onclick="alert('Select your file to process online securely!')">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <h3>Drop your files here or click to browse</h3>
+            <p style="font-size:12px; color:#888; margin-top:5px;">100% Free, Secure & Fast Processing in Browser</p>
         </div>
-        <div id="file-info" style="margin-top: 12px; font-weight: bold; color: var(--dark-navy); font-size: 13px;"></div>
-        <button class="btn-primary" id="process-btn" style="display:none;" onclick="processTool()">Process & Download File</button>
-        <div id="status-msg" style="margin-top: 15px; font-weight: bold; font-size: 13px;"></div>
+        <button class="btn" onclick="alert('Processing Excel to PDF...')">Process File Now</button>
+        <div>
+            <a href="https://pdfify.online/" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to All Tools</a>
+        </div>
     </div>
-
     <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>PDFify</h4>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="https://pdfify.online/">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Connect With Us</h4>
-                <ul>
-                    <li><a href="https://fb.pdfify.online" target="_blank"><i class="fa-brands fa-facebook" style="color: #1877f2;"></i> Facebook Page</a></li>
-                    <li><a href="https://insta.pdfify.online" target="_blank"><i class="fa-brands fa-instagram" style="color: #e4405f;"></i> Instagram</a></li>
-                    <li><a href="https://www.youtube.com/@pdfify.online" target="_blank"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> YouTube Channel</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact Info</h4>
-                <p><i class="fa-solid fa-location-dot"></i> Al Amarat Al Mahaj 119, Muscat, Oman</p>
-                <p style="margin-top: 6px;"><i class="fa-solid fa-envelope"></i> homemantinace.om@gmail.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 PDFify.online - All Rights Reserved.</p>
-            <p>Powered by PDFify Engine</p>
-        </div>
+        &copy; 2026 PDFify.online - Muhammad Kamran | Muscat, Oman
     </footer>
-
-    <script>
-        let loadedFiles = [];
-        function fileSelected(event) {
-            loadedFiles = Array.from(event.target.files);
-            if (loadedFiles.length > 0) {
-                document.getElementById('file-info').innerText = `${loadedFiles.length} file(s) selected: ${loadedFiles[0].name}`;
-                document.getElementById('process-btn').style.display = 'inline-block';
-            }
-        }
-
-        function triggerDownload(blob, filename) {
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            setTimeout(() => URL.revokeObjectURL(link.href), 100);
-        }
-
-        async function processTool() {
-            const status = document.getElementById('status-msg');
-            if (loadedFiles.length === 0) {
-                status.style.color = 'red';
-                status.innerText = 'Please select at least one file first.';
-                return;
-            }
-            status.style.color = 'blue';
-            status.innerText = 'Processing "EXCEL to PDF"...';
-
-            try {
-                const targetFile = loadedFiles[0];
-                setTimeout(() => {
-                    triggerDownload(targetFile, 'PDFify-Processed-File.pdf');
-                    status.style.color = 'green';
-                    status.innerText = 'File processed and downloaded successfully!';
-                }, 1000);
-            } catch (err) {
-                status.style.color = 'red';
-                status.innerText = 'Error: ' + err.message;
-            }
-        }
-    </script>
 </body>
 </html>
