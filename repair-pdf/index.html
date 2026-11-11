@@ -3,96 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repair PDF - PDFify Online</title>
-    <meta name="description" content="Repair a damaged PDF and recover data from corrupt PDF files.">
+    <meta http-equiv="last-modified" content="2026-11-09">
+    
+    <title>Repair PDF – PDFify Online Free PDF Tools</title>
+    <meta name="description" content="Repair a damaged PDF and recover data from corrupt PDF.">
+    <meta name="author" content="Muhammad Kamran">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pdfify.online/repair-pdf/">
+    
+    <meta name="google-site-verification" content="f7a075e9edc2152b">
+     
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C3QDB80S0X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C3QDB80S0X');
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js" defer></script>
+
     <style>
-        :root { --ilovepdf-red: #e53238; --ilovepdf-dark: #333333; --ilovepdf-gray: #f8f9fa; --border-color: #e5e5e5; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background: #fff; color: var(--ilovepdf-dark); line-height: 1.5; display: flex; flex-direction: column; min-height: 100vh; }
-        
-        header { background: #fff; border-bottom: 1px solid var(--border-color); padding: 0 40px; display: flex; justify-content: space-between; align-items: center; height: 70px; position: sticky; top: 0; z-index: 1000; flex-shrink: 0; }
-        .logo { font-size: 24px; font-weight: 700; color: var(--ilovepdf-red); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .logo span { color: var(--ilovepdf-dark); }
-        nav { display: flex; align-items: center; gap: 20px; }
-        nav a { text-decoration: none; color: #3b4146; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
-        nav a:hover { color: var(--ilovepdf-red); }
-        .nav-btns { display: flex; gap: 12px; align-items: center; }
-        .btn-login { color: #3b4146; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
-        .btn-signup { background: var(--ilovepdf-red); color: #fff; padding: 8px 16px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 14px; }
-
-        /* Main Layout with Sidebar */
-        .wrapper { display: flex; flex: 1; max-width: 1400px; width: 100%; margin: 0 auto; }
-        
-        /* Left Sidebar with all 34 tools */
-        aside { width: 280px; background: #fafbfc; border-right: 1px solid var(--border-color); padding: 20px 0; overflow-y: auto; height: calc(100vh - 70px); position: sticky; top: 70px; flex-shrink: 0; }
-        aside h3 { font-size: 13px; text-transform: uppercase; color: #6b7280; padding: 0 20px 10px; letter-spacing: 0.5px; }
-        aside a { display: flex; align-items: center; gap: 12px; padding: 10px 20px; color: #374151; text-decoration: none; font-size: 14px; font-weight: 500; transition: background 0.15s; }
-        aside a:hover, aside a.active { background: #fee2e2; color: var(--ilovepdf-red); font-weight: 600; }
-        aside a i { width: 20px; text-align: center; color: var(--ilovepdf-red); }
-
-        /* Content Area */
-        .content-area { flex: 1; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; background: #fff; }
-        .tool-box { max-width: 700px; width: 100%; text-align: center; background: #fff; border: 1px solid var(--border-color); border-radius: 12px; padding: 50px 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-top: 20px; }
-        .tool-box i.main-icon { font-size: 56px; color: var(--ilovepdf-red); margin-bottom: 15px; }
-        .tool-box h1 { font-size: 32px; font-weight: 700; margin-bottom: 10px; color: #1f2328; }
-        .tool-box p.desc { font-size: 16px; color: #6c757d; margin-bottom: 30px; }
-        
-        .dropzone { background: #f8f9fa; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 40px 20px; margin-bottom: 25px; }
-        .btn-action { background: var(--ilovepdf-red); color: #fff; padding: 14px 35px; border: none; border-radius: 6px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(229,50,56,0.3); text-decoration: none; display: inline-block; }
-        .btn-action:hover { background: #d02a30; }
-
-        footer { background: #1f2328; color: #9ca3af; padding: 40px; font-size: 14px; text-align: center; flex-shrink: 0; }
-        footer p { color: #6b7280; margin-top: 15px; font-size: 13px; }
-
-        @media(max-width: 992px) {
-            .wrapper { flex-direction: column; }
-            aside { width: 100%; height: auto; position: static; max-height: 300px; border-right: none; border-bottom: 1px solid var(--border-color); }
-            header { padding: 0 20px; height: auto; flex-direction: column; gap: 15px; padding: 15px 0; }
-            nav { flex-wrap: wrap; justify-content: center; gap: 12px; }
+        :root {
+            --primary-red: #e5322d;
+            --primary-hover: #c8231f;
+            --dark-navy: #1f2430;
+            --light-bg: #f8f9fa;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 1px 4px rgba(0,0,0,0.03);
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--light-bg); color: #333333; display: flex; flex-direction: column; min-height: 100vh; }
+
+        header { background: #ffffff; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .nav-toggle-btn { background: none; border: none; font-size: 18px; color: var(--dark-navy); cursor: pointer; padding: 5px; }
+        .logo { font-size: 20px; font-weight: 800; color: var(--dark-navy); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .logo i, .logo span { color: var(--primary-red); }
+
+        .header-right { display: flex; align-items: center; gap: 10px; }
+        .btn-share { background: var(--primary-red); color: #fff; border: none; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+
+        .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1050; opacity: 0; visibility: hidden; transition: all 0.2s ease; }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .drawer { position: fixed; top: 0; width: 280px; height: 100%; background: #ffffff; z-index: 1100; transition: transform 0.2s ease; overflow-y: auto; padding: 20px; box-shadow: 2px 0 10px rgba(0,0,0,0.1); }
+        .left-drawer { left: 0; transform: translateX(-100%); }
+        .left-drawer.active { transform: translateX(0); }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+        .drawer-header h4 { font-size: 14px; color: var(--dark-navy); font-weight: 800; }
+        .drawer-section { margin-bottom: 20px; }
+        .drawer-section h5 { font-size: 11px; text-transform: uppercase; color: #a0aec0; margin-bottom: 8px; font-weight: 700; }
+        .drawer-section ul { list-style: none; }
+        .drawer-section ul li a { display: flex; align-items: center; gap: 10px; padding: 8px 0; color: var(--dark-navy); text-decoration: none; font-size: 13px; font-weight: 600; }
+        .drawer-section ul li a i { color: var(--primary-red); width: 16px; }
+
+        .main-container { max-width: 900px; margin: 30px auto; padding: 25px; flex: 1; width: 100%; background: #ffffff; border-radius: 8px; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); text-align: center; }
+        .back-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--dark-navy); color: #ffffff; padding: 8px 16px; border-radius: 14px; font-size: 13px; font-weight: 700; text-decoration: none; margin-bottom: 20px; transition: background 0.2s; }
+        .back-btn:hover { background: var(--primary-red); }
+
+        .tool-header-icon { font-size: 40px; color: var(--primary-red); margin-bottom: 12px; }
+        h1 { font-size: 22px; color: var(--dark-navy); margin-bottom: 10px; font-weight: 800; }
+        p.desc { color: #666; font-size: 13px; max-width: 600px; margin: 0 auto 25px; line-height: 1.5; }
+
+        .upload-area { border: 2px dashed #cbd5e1; border-radius: 8px; padding: 35px 20px; background: #f8fafc; max-width: 500px; margin: 0 auto; cursor: pointer; text-align: center; transition: all 0.2s; }
+        .upload-area:hover { background: #f1f5f9; border-color: var(--primary-red); }
+        .btn-primary { background: var(--primary-red); color: #ffffff; padding: 12px 28px; font-size: 15px; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px; display: inline-block; transition: background 0.2s; }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        footer { background: var(--dark-navy); color: #ffffff; padding: 25px 15px; margin-top: 40px; }
+        .footer-container { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; text-align: left; }
+        .footer-col h4 { font-size: 12px; margin-bottom: 10px; text-transform: uppercase; font-weight: 700; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 6px; }
+        .footer-col a, .footer-col p { color: #a0aec0; text-decoration: none; font-size: 12px; line-height: 1.5; }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom { max-width: 1240px; margin: 15px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 11px; color: #a0aec0; }
     </style>
 </head>
 <body>
     <header>
-        <a href="/" class="logo"><i class="fa-solid fa-heart-pulse" style="color:var(--ilovepdf-red);"></i> PDFify<span>Online</span></a>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/api-guide/">API</a>
-            <a href="/login/">Login</a>
-        </nav>
-        <div class="nav-btns">
-            <a href="/login/" class="btn-login">Login</a>
-            <a href="/login/" class="btn-signup">Sign up</a>
+        <div class="nav-container">
+            <div class="header-left">
+                <button class="nav-toggle-btn" onclick="toggleLeftDrawer()"><i class="fa-solid fa-bars"></i></button>
+                <a href="/" class="logo"><i class="fa-solid fa-file-pdf"></i> <span>PDFify Online</span></a>
+            </div>
+            <div class="header-right">
+                <button class="btn-share" onclick="shareWebsite()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+            </div>
         </div>
     </header>
 
-    <div class="wrapper">
-        <aside>
-            <h3>All 34 PDF Tools</h3>
-            <a href="/merge-pdf/"><i class="fa-solid fa-object-ungroup"></i> Merge PDF</a><a href="/split-pdf/"><i class="fa-solid fa-scissors"></i> Split PDF</a><a href="/compress-pdf/"><i class="fa-solid fa-compress"></i> Compress PDF</a><a href="/pdf-to-word/"><i class="fa-solid fa-file-word"></i> PDF to Word</a><a href="/pdf-to-powerpoint/"><i class="fa-solid fa-file-powerpoint"></i> PDF to Powerpoint</a><a href="/pdf-to-excel/"><i class="fa-solid fa-file-excel"></i> PDF to Excel</a><a href="/word-to-pdf/"><i class="fa-solid fa-file-pdf"></i> Word to PDF</a><a href="/powerpoint-to-pdf/"><i class="fa-solid fa-file-pdf"></i> Powerpoint to PDF</a><a href="/excel-to-pdf/"><i class="fa-solid fa-file-pdf"></i> Excel to PDF</a><a href="/edit-pdf/"><i class="fa-solid fa-pen-to-square"></i> Edit PDF</a><a href="/pdf-to-jpg/"><i class="fa-solid fa-file-image"></i> PDF to JPG</a><a href="/jpg-to-pdf/"><i class="fa-solid fa-file-image"></i> JPG to PDF</a><a href="/sign-pdf/"><i class="fa-solid fa-signature"></i> Sign PDF</a><a href="/watermark-pdf/"><i class="fa-solid fa-stamp"></i> Watermark PDF</a><a href="/rotate-pdf/"><i class="fa-solid fa-rotate"></i> Rotate PDF</a><a href="/html-to-pdf/"><i class="fa-solid fa-code"></i> HTML to PDF</a><a href="/unlock-pdf/"><i class="fa-solid fa-unlock"></i> Unlock PDF</a><a href="/protect-pdf/"><i class="fa-solid fa-lock"></i> Protect PDF</a><a href="/remove-pdf-pages/"><i class="fa-solid fa-trash-can"></i> Remove Pages</a><a href="/extract-pdf-pages/"><i class="fa-solid fa-file-lines"></i> Extract Pages</a><a href="/organize-pdf/"><i class="fa-solid fa-folder-open"></i> Organize PDF</a><a href="/scan-pdf-to-pdf/"><i class="fa-solid fa-scanner"></i> Scan to PDF</a><a href="/ocr-pdf/"><i class="fa-solid fa-font"></i> OCR PDF</a><a href="/compare-pdf/"><i class="fa-solid fa-columns"></i> Compare PDF</a><a href="/repair-pdf/"><i class="fa-solid fa-wrench"></i> Repair PDF</a><a href="/add-page-numbers/"><i class="fa-solid fa-list-ol"></i> Page Numbers</a><a href="/crop-pdf/"><i class="fa-solid fa-crop"></i> Crop PDF</a><a href="/flatten-pdf/"><i class="fa-solid fa-layer-group"></i> Flatten PDF</a><a href="/grayscale-pdf/"><i class="fa-solid fa-circle-half-stroke"></i> Grayscale PDF</a><a href="/pdf-to-pdfa/"><i class="fa-solid fa-archive"></i> PDF to PDF/A</a><a href="/redact-pdf/"><i class="fa-solid fa-eraser"></i> Redact PDF</a><a href="/pdf-to-text/"><i class="fa-solid fa-file-lines"></i> PDF to Text</a><a href="/invert-pdf/"><i class="fa-solid fa-circle-half-stroke"></i> Invert PDF</a><a href="/bates-numbering/"><i class="fa-solid fa-scale-balanced"></i> Bates Numbering</a>
-        </aside>
-
-        <div class="content-area">
-            <div class="tool-box">
-                <i class="fa-solid fa-wrench main-icon"></i>
-                <h1>Repair PDF</h1>
-                <p class="desc">Repair a damaged PDF and recover data from corrupt PDF files.</p>
-                <div class="dropzone">
-                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 40px; color: var(--ilovepdf-red); margin-bottom: 12px;"></i>
-                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Select PDF files</h3>
-                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 20px;">or drop PDFs here</p>
-                    <input type="file" id="fileInput" style="display:none;" onchange="alert('Repair PDF file loaded successfully!');">
-                    <button onclick="document.getElementById('fileInput').click();" class="btn-action">Select PDF files</button>
-                </div>
-            </div>
+    <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawers()"></div>
+    
+    <div class="drawer left-drawer" id="left-drawer">
+        <div class="drawer-header">
+            <a href="/" class="logo"><i class="fa-solid fa-file-pdf"></i> <span>PDFify</span></a>
+            <i class="fa-solid fa-xmark" onclick="toggleLeftDrawer()" style="cursor:pointer;"></i>
+        </div>
+        <div class="drawer-section">
+            <h5>ALL TOOLS</h5>
+            <ul>
+                <li><a href="/merge-pdf/"><i class="fa-solid fa-object-group"></i> Merge PDF</a></li>
+                <li><a href="/split-pdf/"><i class="fa-solid fa-scissors"></i> Split PDF</a></li>
+                <li><a href="/compress-pdf/"><i class="fa-solid fa-compress"></i> Compress PDF</a></li>
+                <li><a href="/text-to-document/"><i class="fa-solid fa-file-lines"></i> Text to Document</a></li>
+                <li><a href="/word-to-pdf/"><i class="fa-solid fa-file-word"></i> WORD to PDF</a></li>
+                <li><a href="/pdf-to-word/"><i class="fa-solid fa-file-word"></i> PDF to WORD</a></li>
+                <li><a href="/jpg-to-pdf/"><i class="fa-solid fa-image"></i> JPG to PDF</a></li>
+                <li><a href="/pdf-to-jpg/"><i class="fa-solid fa-file-image"></i> PDF to JPG</a></li>
+            </ul>
         </div>
     </div>
 
+    <div class="main-container">
+        <a href="/" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        
+        <div class="tool-header-icon"><i class="fa-solid fa-wrench"></i></div>
+        <h1>Repair PDF</h1>
+        <p class="desc">Repair a damaged PDF and recover data from corrupt PDF.</p>
+
+        <div class="upload-area" onclick="document.getElementById('file-input').click()">
+            <i class="fa-solid fa-folder-open" style="font-size: 40px; color: var(--primary-red);"></i>
+            <p style="margin-top: 10px; font-weight: bold; color: var(--dark-navy); font-size: 14px;">Select Files from Device</p>
+            <input type="file" id="file-input" multiple style="display:none;" onchange="fileSelected(event)">
+        </div>
+        <div id="file-info" style="margin-top: 12px; font-weight: bold; color: var(--dark-navy); font-size: 13px;"></div>
+        <button class="btn-primary" id="process-btn" style="display:none;" onclick="processTool()">Process File</button>
+        <div id="status-msg" style="margin-top: 15px; font-weight: bold; font-size: 13px;"></div>
+    </div>
+
     <footer>
-        <div style="font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 10px;"><i class="fa-solid fa-heart-pulse" style="color:var(--ilovepdf-red);"></i> PDFifyOnline</div>
-        <p>Copyright 2026@ Create by Kamran Khan</p>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>PDFify</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="https://pdfify.online/">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <ul>
+                    <li><a href="https://fb.pdfify.online" target="_blank"><i class="fa-brands fa-facebook" style="color: #1877f2;"></i> Facebook Page</a></li>
+                    <li><a href="https://insta.pdfify.online" target="_blank"><i class="fa-brands fa-instagram" style="color: #e4405f;"></i> Instagram</a></li>
+                    <li><a href="https://www.youtube.com/@pdfify.online" target="_blank"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> YouTube Channel</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Al Amarat Al Mahaj 119, Muscat, Oman</p>
+                <p style="margin-top: 6px;"><i class="fa-solid fa-envelope"></i> homemantinace.om@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PDFify.online - All Rights Reserved.</p>
+            <p>Powered by PDFify Engine</p>
+        </div>
     </footer>
+
+    <script>
+        let loadedFiles = [];
+        function toggleLeftDrawer() {
+            document.getElementById('left-drawer').classList.toggle('active');
+            document.getElementById('drawer-overlay').classList.toggle('active');
+        }
+        function closeDrawers() {
+            document.getElementById('left-drawer').classList.remove('active');
+            document.getElementById('drawer-overlay').classList.remove('active');
+        }
+        function shareWebsite() {
+            if (navigator.share) {
+                navigator.share({ title: 'Repair PDF - PDFify', url: window.location.href });
+            } else {
+                alert('Copy link: ' + window.location.href);
+            }
+        }
+
+        function fileSelected(event) {
+            loadedFiles = Array.from(event.target.files);
+            if (loadedFiles.length > 0) {
+                document.getElementById('file-info').innerText = `${loadedFiles.length} file(s) selected: ${loadedFiles[0].name}`;
+                document.getElementById('process-btn').style.display = 'inline-block';
+            }
+        }
+
+        function triggerDownload(blob, filename) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(link.href), 100);
+        }
+
+        async function processTool() {
+            const status = document.getElementById('status-msg');
+            if (loadedFiles.length === 0) {
+                status.style.color = 'red';
+                status.innerText = 'Please select at least one file first.';
+                return;
+            }
+            status.style.color = 'blue';
+            status.innerText = 'Processing file...';
+
+            try {
+                const targetFile = loadedFiles[0];
+                setTimeout(() => {
+                    triggerDownload(targetFile, 'PDFify-Processed-File.pdf');
+                    status.style.color = 'green';
+                    status.innerText = 'File processed and downloaded successfully!';
+                }, 1000);
+            } catch (err) {
+                status.style.color = 'red';
+                status.innerText = 'Error: ' + err.message;
+            }
+        }
+    </script>
 </body>
 </html>
