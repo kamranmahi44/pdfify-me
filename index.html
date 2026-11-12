@@ -97,11 +97,12 @@
     <header>
         <div class="nav-container">
             <div class="header-left">
-                <button class="nav-toggle-btn" onclick="toggleLeftDrawer()"><i class="fa-solid fa-bars"></i></button>
+                <button class="nav-toggle-btn" aria-label="Toggle navigation menu" onclick="toggleLeftDrawer()"><i class="fa-solid fa-bars"></i></button>
+
                 <a href="/" class="logo"><i class="fa-solid fa-file-pdf"></i> <span>PDFify Online</span></a>
             </div>
             <div class="header-right">
-                <button class="btn-share" onclick="shareWebsite()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                <button class="btn-apps" aria-label="Open applications menu" onclick="toggleRightDrawer()"><i class="fa-solid fa-fa-grip"></i></button>
                 <button class="btn-apps" onclick="toggleRightDrawer()"><i class="fa-solid fa-grip"></i></button>
             </div>
         </div>
